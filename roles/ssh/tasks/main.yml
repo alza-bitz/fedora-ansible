@@ -1,0 +1,3 @@
+- yum: pkg=openssh-server state=present
+
+- service: name=sshd state=started enabled=yes

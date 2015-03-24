@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  sudo: yes
+
+  vars: 
+    user: "alex"
+
+  roles:
+    - ssh
+    - docker
+    - chromium

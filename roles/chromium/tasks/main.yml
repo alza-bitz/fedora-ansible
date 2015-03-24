@@ -1,0 +1,9 @@
+- get_url: 
+    url=https://repos.fedorapeople.org/repos/spot/chromium/fedora-chromium-stable.repo
+    dest=/etc/yum.repos.d/
+
+- get_url: 
+    url=https://repos.fedorapeople.org/repos/spot/chromium/spot.gpg
+    dest=/etc/pki/rpm-gpg/
+
+- yum: pkg=chromium state=present

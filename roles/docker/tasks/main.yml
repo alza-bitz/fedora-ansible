@@ -1,0 +1,7 @@
+- yum: pkg=docker-io state=present
+
+- service: name=docker state=started enabled=yes
+
+- group: name=docker system=yes state=present
+
+- user: name={{ user }} groups="docker" append=yes
