@@ -1,0 +1,9 @@
+- yum: pkg=vim-enhanced state=present
+  sudo: yes
+
+- copy: content='' dest=~/.vimrc force=no
+
+- include: pathogen.yml
+- include: ansible.yml
+- include: drake.yml
+- include: bats.yml

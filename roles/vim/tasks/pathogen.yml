@@ -1,0 +1,9 @@
+- file: path=~/.vim/autoload state=directory
+
+- file: path=~/.vim/bundle state=directory
+
+- command: curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+  args:
+    creates: /home/{{user}}/.vim/autoload/pathogen.vim
+
+- lineinfile: dest=~/.vimrc line='execute pathogen#infect()'

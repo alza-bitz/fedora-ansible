@@ -1,0 +1,3 @@
+- git: >
+    repo=https://bitbucket.org/larsyencken/vim-drake-syntax.git
+    dest=~/.vim/bundle/vim-drake-syntax

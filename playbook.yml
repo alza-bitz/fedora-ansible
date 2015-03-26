@@ -4,10 +4,20 @@
   sudo: yes
 
   vars: 
-    user: "alex"
+    user: alex
 
   roles:
     - ssh
     - docker
     - chromium
     - eclipse
+
+- hosts: localhost
+  connection: local
+  sudo: no
+
+  vars:
+    user: alex
+
+  roles:
+    - vim
