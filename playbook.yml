@@ -11,6 +11,7 @@
     - docker
     - chromium
     - eclipse
+    - bats
 
 - hosts: localhost
   connection: local
@@ -20,4 +21,5 @@
     user: alex
 
   roles:
-    - vim
+    - drake
+    - drip

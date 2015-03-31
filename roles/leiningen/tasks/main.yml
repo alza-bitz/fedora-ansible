@@ -1,0 +1,5 @@
+- get_url: >
+    dest=~/bin
+    url=https://raw.github.com/technomancy/leiningen/stable/bin/lein
+
+- file: path=~/bin/lein mode=0755

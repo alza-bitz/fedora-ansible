@@ -1,0 +1,4 @@
+- yum: pkg=bats state=present
+  sudo: yes
+
+- include: vim.yml

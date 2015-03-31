@@ -1,0 +1,22 @@
+- git: >
+    repo=https://github.com/Factual/drake.git
+    dest=~/Projects/drake
+  register: drake
+
+- command: lein uberjar chdir=~/Projects/drake
+  when: drake.changed
+
+- copy: >
+    src=~/Projects/drake/target/drake.jar
+    dest=~/bin/
+  when: drake.changed
+
+- copy:
+    content: |
+      echo #!/bin/bash
+      java -cp $(dirname $0)/drake.jar drake.core "$@" 
+    dest: ~/bin/drake
+    mode: 0755
+  when: drake.changed
+
+- include: vim.yml

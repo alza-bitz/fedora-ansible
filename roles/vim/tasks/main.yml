@@ -5,5 +5,3 @@
 
 - include: pathogen.yml
 - include: ansible.yml
-- include: drake.yml
-- include: bats.yml

@@ -1,0 +1,7 @@
+- git: >
+    repo=https://github.com/ninjudd/drip.git
+    dest=~/Projects/drip
+  register: drip
+
+- command: make prefix=~/bin install chdir=~/Projects/drip
+  when: drip.changed
