@@ -1,6 +1,12 @@
+- shell: cd ~/Projects/drake && { ! git diff --quiet HEAD ;}
+  register: drake_local
+  changed_when: false
+  failed_when: drake_local.rc > 1
+
 - git: >
     repo=https://github.com/Factual/drake.git
     dest=~/Projects/drake
+  when: drake_local.rc != 0
   register: drake
 
 - command: lein uberjar chdir=~/Projects/drake
