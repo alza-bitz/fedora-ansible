@@ -1,0 +1,7 @@
+- copy:
+    content: |
+      export HISTCONTROL=erasedups
+      export HISTSIZE=10000
+      shopt -s histappend
+    dest: /etc/profile.d/bash_history.sh
+    mode: 0644
