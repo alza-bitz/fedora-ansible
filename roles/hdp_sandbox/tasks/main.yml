@@ -1,0 +1,7 @@
+- lineinfile:
+    dest: /etc/hosts
+    create: no
+    line: "{{ item.line }}"
+  with_items:
+    - { line: '127.0.0.1\t\tsandbox.hortonworks.com' }
+  sudo: yes

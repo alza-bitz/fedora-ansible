@@ -1,0 +1,7 @@
+- yum: name="@Virtualisation" state=present
+  sudo: yes
+
+# workaround https://bugzilla.redhat.com/show_bug.cgi?id=1105274
+- file: >
+    path=~/.config/libvirt/qemu/lib/channel/target
+    state=directory

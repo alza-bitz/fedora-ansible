@@ -1,0 +1,72 @@
+- yum: pkg=xmlstarlet state=present
+  sudo: yes
+
+#- get_url: >
+#    dest=~/Downloads
+#    url={{ ova_url }}
+
+- file: >
+    path="{{ ova_dir }}"
+    state=directory
+
+# extract
+# TODO creates not one but multiple files!
+- unarchive: >
+    src={{ ova_path }}
+    dest="{{ ova_dir }}"
+    creates="{{ ova_dir }}/{{ vmdk_file }}"
+
+# disable cow
+- command: chattr +C {{ ova_dir }}
+  changed_when: false
+
+# convert
+- command: qemu-img convert -O raw {{ vmdk_file }} {{ disk_file }}
+  args:
+    chdir: "{{ ova_dir }}"
+    creates: "{{ ova_dir }}/{{ disk_file }}"
+
+# get name from ovf
+- command: xmlstarlet sel -N vbox=http://www.virtualbox.org/ovf/machine -t -v "//vbox:Machine/@name" {{ ovf_file }}
+  args:
+    chdir: "{{ ova_dir }}"
+  register: xmlstarlet_name
+  changed_when: false
+
+# check for existing domain
+- shell: virsh list --name --all | grep -q "{{ xmlstarlet_name.stdout }}"
+  register: virsh_list
+  changed_when: false
+  failed_when: virsh_list.rc > 1
+
+- command: mktemp -d
+  register: mktemp
+  changed_when: false
+  when: virsh_list.rc != 0
+
+# copy xslt files
+- copy: src={{ item }} dest="{{ mktemp.stdout }}"
+  with_fileglob:
+    - "*.xslt"
+  changed_when: false
+  when: virsh_list.rc != 0
+
+# create definition
+# TODO handle os-type, os-variant..
+- shell: virt-install --import --disk {{ ova_dir }}/{{ disk_file }} -n {{ mktemp.stdout | basename }} --memory 1024 --print-xml |
+    xmlstarlet tr ovf-mapping.xslt -s file="{{ ova_dir | expanduser }}/{{ ovf_file }}" > domain.xml
+  args:
+    chdir: "{{ mktemp.stdout }}"
+  changed_when: false
+  when: virsh_list.rc != 0
+
+# define domain
+- command: virsh define --file domain.xml
+  args:
+    chdir: "{{ mktemp.stdout }}"
+  changed_when: true
+  when: virsh_list.rc != 0
+
+- file: name={{ mktemp.stdout }} state=absent
+  changed_when: false
+  when: virsh_list.rc != 0

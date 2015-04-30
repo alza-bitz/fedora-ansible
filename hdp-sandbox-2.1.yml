@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  connection: local
+  sudo: no
+
+  vars:
+    user: alex
+
+  roles:
+    - { role: virt_convert, 
+        ova_path: "~/Downloads/Hortonworks_Sandbox_2.1.ova",
+        ova_dir: "~/Downloads/Hortonworks_Sandbox_2.1",
+        ovf_file: "Hortonworks_Sandbox_2.1.ovf",
+        vmdk_file: "Hortonworks_Sandbox_2.1-disk1.vmdk",
+        disk_file: "Hortonworks_Sandbox_2.1-disk1.raw"
+      }
+    - { role: virt_mount,
+        domain_name: "Hortonworks Sandbox 2.1",
+        mount_dir: "/home/{{ user }}/Projects"
+      }
+    - hdp_sandbox
