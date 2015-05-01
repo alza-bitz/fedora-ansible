@@ -52,6 +52,7 @@
   sudo: yes
   register: semanage_fcontext_list
   changed_when: false
+  failed_when: semanage_fcontext_list.rc > 1
   when: selinuxenabled.rc == 0
 
 # set selinux context for mount
