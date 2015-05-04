@@ -20,7 +20,6 @@
   sudo: no
 
   vars:
-    user: alex
     project_dir: ~/Projects
 
   roles:
