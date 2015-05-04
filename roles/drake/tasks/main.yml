@@ -9,13 +9,22 @@
   when: drake_local.rc != 0
   register: drake
 
+- stat: path=~/Projects/drake/target/drake.jar
+  register: drake_target_jar
+
 - command: lein uberjar chdir=~/Projects/drake
-  when: drake.changed
+  when: drake_target_jar.stat.exists == false or drake.changed
+
+- stat: path=~/bin/drake.jar
+  register: drake_bin_jar
 
 - copy: >
     src=~/Projects/drake/target/drake.jar
     dest=~/bin/
-  when: drake.changed
+  when: drake_bin_jar.stat.exists == false or drake.changed
+
+- stat: path=~/bin/drake
+  register: drake_bin
 
 - copy:
     content: |
@@ -23,6 +32,6 @@
       java -cp $(dirname $0)/drake.jar drake.core "$@" 
     dest: ~/bin/drake
     mode: 0755
-  when: drake.changed
+  when: drake_bin.stat.exists == false or drake.changed
 
 - include: vim.yml
