@@ -1,7 +1,7 @@
 - git: >
     repo=https://github.com/ninjudd/drip.git
-    dest=~/Projects/drip
+    dest={{ project_dir }}/drip
   register: drip
 
-- command: make prefix=~/bin install chdir=~/Projects/drip
+- command: make prefix=~/bin install chdir={{ project_dir }}/drip
   when: drip.changed

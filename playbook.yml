@@ -21,6 +21,7 @@
 
   vars:
     user: alex
+    project_dir: ~/Projects
 
   roles:
     - drake
