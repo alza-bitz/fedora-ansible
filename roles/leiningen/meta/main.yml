@@ -1,2 +1,2 @@
 dependencies:
-  - { role: java-development }
+  - { role: java_development }

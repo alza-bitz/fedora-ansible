@@ -1,2 +1,0 @@
-- yum: name="@Java Development" state=present
-  sudo: yes

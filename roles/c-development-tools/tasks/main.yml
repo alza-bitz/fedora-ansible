@@ -1,2 +1,0 @@
-- yum: name="@C Development Tools and Libraries" state=present
-  sudo: yes
