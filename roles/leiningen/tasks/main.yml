@@ -1,3 +1,5 @@
+- file: path=~/bin state=directory
+
 - get_url: >
     dest=~/bin
     url=https://raw.github.com/technomancy/leiningen/stable/bin/lein
