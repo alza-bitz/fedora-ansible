@@ -4,4 +4,3 @@
 - copy: content='' dest=~/.vimrc force=no
 
 - include: pathogen.yml
-- include: ansible.yml
