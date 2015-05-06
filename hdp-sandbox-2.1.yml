@@ -8,11 +8,8 @@
 
   roles:
     - { role: virt_convert, 
-        ova_path: "~/Downloads/Hortonworks_Sandbox_2.1.ova",
-        ova_dir: "~/Downloads/Hortonworks_Sandbox_2.1",
-        ovf_file: "Hortonworks_Sandbox_2.1.ovf",
-        vmdk_file: "Hortonworks_Sandbox_2.1-disk1.vmdk",
-        disk_file: "Hortonworks_Sandbox_2.1-disk1.raw"
+        ova_path: ~/Downloads/Hortonworks_Sandbox_2.1.ova,
+        ova_dir: ~/Downloads/Hortonworks_Sandbox_2.1
       }
     - { role: virt_mount,
         domain_name: "Hortonworks Sandbox 2.1",
