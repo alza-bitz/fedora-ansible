@@ -22,6 +22,8 @@
 
   <xsl:template match="input[@bus='ps2' and @type='keyboard']"/>
 
+  <xsl:template match="filesystem/alias"/>
+
   <xsl:template match="console/target"/>
 
   <xsl:template match="interface[@type='user']/model"/>

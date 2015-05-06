@@ -13,6 +13,6 @@
       }
     - { role: virt_mount,
         domain_name: "Hortonworks Sandbox 2.1",
-        mount_dir: "/home/{{ user }}/Projects"
+        mount_dir: ~/Projects
       }
     - hdp_sandbox

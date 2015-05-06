@@ -18,16 +18,15 @@
   changed_when: false
 
 # modify definition
-- shell: cat domain-dump.xml |
-    xmlstarlet tr filesystem-mount.xslt -s source_dir="{{ mount_dir }}" > domain.xml
+- shell: < domain-dump.xml xmlstarlet tr filesystem-mount.xslt -s source_dir="{{ mount_dir | expanduser }}" > domain.xml
   args:
     chdir: "{{ mktemp.stdout }}"
   changed_when: false
 
 # check if definition differs by comparing with existing domain
 - shell: cmp 
-    <(cat domain-dump.xml | xmlstarlet tr virsh-dump-filter.xslt | xmlstarlet tr sort.xslt)
-    <(cat domain.xml | xmlstarlet tr virsh-dump-filter.xslt | xmlstarlet tr sort.xslt)
+    <(< domain-dump.xml xmlstarlet tr virsh-dump-filter.xslt | xmlstarlet tr sort.xslt)
+    <(< domain.xml xmlstarlet tr virsh-dump-filter.xslt | xmlstarlet tr sort.xslt)
   args:
     chdir: "{{ mktemp.stdout }}"
     executable: /usr/bin/bash 
@@ -48,7 +47,7 @@
   changed_when: false
 
 # check selinux context for mount
-- shell: semanage fcontext --locallist --list | grep -q "{{ mount_dir }}(/.*)?"
+- shell: semanage fcontext --locallist --list | grep -q "{{ mount_dir_expanded }}(/.*)?"
   sudo: yes
   register: semanage_fcontext_list
   changed_when: false
@@ -56,7 +55,7 @@
   when: selinuxenabled.rc == 0
 
 # set selinux context for mount
-- shell: semanage fcontext -a -t svirt_image_t "{{ mount_dir }}(/.*)?"
+- shell: semanage fcontext -a -t svirt_image_t "{{ mount_dir_expanded }}(/.*)?"
   sudo: yes
   when: selinuxenabled.rc == 0 and semanage_fcontext_list.rc != 0
 
