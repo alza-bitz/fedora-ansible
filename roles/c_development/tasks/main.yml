@@ -1,0 +1,2 @@
+- yum: name="@c-development" state=present
+  sudo: yes

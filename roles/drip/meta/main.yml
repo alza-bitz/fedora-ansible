@@ -1,4 +1,4 @@
 dependencies:
-  - { role: c_development_tools }
+  - { role: c_development }
   - { role: java_development }
   - { role: vim }
