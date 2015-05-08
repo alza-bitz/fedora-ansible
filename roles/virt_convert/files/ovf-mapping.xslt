@@ -37,8 +37,10 @@
       <xsl:apply-templates select="@* | node()[not(self::entry)]"/>
       <qemu:commandline>
         <xsl:for-each select="$ovf//ovf:Forwarding">
-          <qemu:arg value="-redir"/>
-	  <qemu:arg value="tcp:{@hostport}::{@guestport}"/>
+          <xsl:if test="@hostport >= 1024">
+            <qemu:arg value="-redir"/>
+            <qemu:arg value="tcp:{@hostport}::{@guestport}"/>
+          </xsl:if>
         </xsl:for-each>
       </qemu:commandline>
     </domain>
