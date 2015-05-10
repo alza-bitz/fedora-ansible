@@ -27,10 +27,10 @@
   changed_when: false
 
 # convert
-- command: qemu-img convert -O raw {{ ls_vmdk.stdout }} {{ ls_vmdk.stdout | replace('.vmdk', '.raw') }}
+- command: qemu-img convert -O qcow2 {{ ls_vmdk.stdout }} {{ ls_vmdk.stdout | replace('.vmdk', '.qcow2') }}
   args:
     chdir: "{{ ova_dir }}"
-    creates: "{{ ova_dir }}/{{ ls_vmdk.stdout | replace('.vmdk', '.raw') }}"
+    creates: "{{ ova_dir }}/{{ ls_vmdk.stdout | replace('.vmdk', '.qcow2') }}"
 
 # get name from ovf
 - command: xmlstarlet sel -N vbox=http://www.virtualbox.org/ovf/machine -t -v "//vbox:Machine/@name" "{{ ls_ovf.stdout }}"
@@ -59,7 +59,7 @@
 
 # create definition
 # TODO handle os-type, os-variant..
-- shell: set -o pipefail; virt-install --import --disk "{{ ova_dir | expanduser }}/{{ ls_vmdk.stdout | replace('.vmdk', '.raw') }}" 
+- shell: set -o pipefail; virt-install --import --disk "{{ ova_dir | expanduser }}/{{ ls_vmdk.stdout | replace('.vmdk', '.qcow2') }}" 
     -n {{ mktemp.stdout | basename }} --memory 1024 --print-xml |
     xmlstarlet tr ovf-mapping.xslt -s file="{{ ova_dir | expanduser }}/{{ ls_ovf.stdout | replace(' ', '%20') }}" > domain.xml
   args:

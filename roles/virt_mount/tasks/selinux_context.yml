@@ -1,0 +1,22 @@
+# check selinux context for mount
+- shell: semanage fcontext --locallist --list | grep -q "{{ mount_dir_expanded }}(/.*)?"
+  sudo: yes
+  register: semanage_fcontext_list
+  changed_when: false
+  failed_when: semanage_fcontext_list.rc > 1
+
+# set selinux context for mount
+- shell: semanage fcontext -a -t svirt_image_t "{{ mount_dir_expanded }}(/.*)?"
+  sudo: yes
+  when: semanage_fcontext_list.rc != 0
+
+- shell: ls -dZ {{ mount_dir }} | grep -q svirt_image_t
+  register: ls_svirt_image_t
+  changed_when: false
+  failed_when: ls_svirt_image_t.rc > 1
+
+- command: restorecon -R -v {{ mount_dir }}
+  when: ls_svirt_image_t.rc != 0
+
+- file: name={{ mktemp.stdout }} state=absent
+  changed_when: false
