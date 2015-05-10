@@ -11,6 +11,7 @@
     - ansible
     - ssh
     - docker
+    - xrdp
     - chromium
     - eclipse
     - bats

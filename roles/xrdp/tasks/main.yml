@@ -1,0 +1,14 @@
+- yum: name=xrdp state=present
+
+# http://component-parts.blogspot.co.uk/2012/08/fixing-uk-keyboard-mapping-for-xrdp.html
+- copy: src=km-0809.ini dest=/etc/xrdp mode=0644
+
+- command: selinuxenabled
+  register: selinuxenabled
+  changed_when: false
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=1177202
+- include: selinux_context.yml
+  when: selinuxenabled.rc == 0
+
+- service: name=xrdp state=started enabled=yes

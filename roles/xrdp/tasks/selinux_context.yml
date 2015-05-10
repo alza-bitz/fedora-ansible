@@ -1,0 +1,19 @@
+# check selinux context
+- shell: semanage fcontext --locallist --list | grep -q /usr/sbin/xrdp
+  sudo: yes
+  register: semanage_fcontext_list
+  changed_when: false
+  failed_when: semanage_fcontext_list.rc > 1
+
+# set selinux context
+- shell: semanage fcontext -a -t bin_t "/usr/sbin/xrdp" && semanage fcontext -a -t bin_t "/usr/sbin/xrdp-sesman"
+  sudo: yes
+  when: semanage_fcontext_list.rc != 0
+
+- shell: ls -Z /usr/sbin/xrdp | grep -q bin_t
+  register: ls_bin_t
+  changed_when: false
+  failed_when: ls_bin_t.rc > 1
+
+- command: restorecon -R -v /usr/sbin/
+  when: ls_bin_t.rc != 0
