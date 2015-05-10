@@ -1,7 +1,16 @@
+- shell: cd {{ project_dir }}/drip && { ! git diff --quiet HEAD ;}
+  register: drip_local
+  changed_when: false
+  failed_when: drip_local.rc > 1
+
 - git: >
     repo=https://github.com/ninjudd/drip.git
     dest={{ project_dir }}/drip
   register: drip
+  when: drip_local.rc != 0
+
+- stat: path=~/bin/drip
+  register: drip_bin
 
 - command: make prefix=~/bin install chdir={{ project_dir }}/drip
-  when: drip.changed
+  when: drip_bin.stat.exists == false or drip.changed
