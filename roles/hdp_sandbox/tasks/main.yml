@@ -5,3 +5,13 @@
   with_items:
     - { line: '127.0.0.1\t\tsandbox.hortonworks.com' }
   sudo: yes
+
+- lineinfile:
+    dest: ~/.ssh/config
+    create: yes
+    line: "{{ item.line }}"
+    mode: 0600
+  with_items:
+    - { line: 'Host localhost' }
+    - { line: '  StrictHostKeyChecking no' }
+
