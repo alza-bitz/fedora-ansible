@@ -27,7 +27,7 @@
   changed_when: false
 
 # convert
-- command: qemu-img convert -O qcow2 {{ ls_vmdk.stdout }} {{ ls_vmdk.stdout | replace('.vmdk', '.qcow2') }}
+- command: qemu-img convert -O qcow2 "{{ ls_vmdk.stdout }}" "{{ ls_vmdk.stdout | replace('.vmdk', '.qcow2') }}"
   args:
     chdir: "{{ ova_dir }}"
     creates: "{{ ova_dir }}/{{ ls_vmdk.stdout | replace('.vmdk', '.qcow2') }}"
