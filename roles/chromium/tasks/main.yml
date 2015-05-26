@@ -7,3 +7,14 @@
     dest=/etc/pki/rpm-gpg/
 
 - yum: pkg=chromium state=present
+
+- command: xdg-settings get default-web-browser
+  sudo: false
+  register: default_browser
+  changed_when: false
+  failed_when: false
+  when: set_default_browser is defined and set_default_browser == true
+
+- command: xdg-settings set default-web-browser chromium-browser.desktop
+  sudo: false
+  when: set_default_browser is defined and set_default_browser == true and default_browser.stdout != "chromium-browser.desktop"

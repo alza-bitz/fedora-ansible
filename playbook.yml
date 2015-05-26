@@ -12,7 +12,7 @@
     - ssh
     - docker
     - xrdp
-    - chromium
+    - { role: chromium, set_default_browser: true }
     - eclipse
     - bats
 
