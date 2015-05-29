@@ -8,4 +8,13 @@
     tar xz -C /usr/local/ --no-same-owner --no-same-permissions
     creates=/usr/local/eclipse
 
-- copy: src=eclipse.desktop dest=/usr/share/applications/
+# append /usr/local/eclipse to sudo secure_path
+- replace:
+    dest: /etc/sudoers
+    regexp: '(secure_path(?!.*/usr/local/eclipse.*).*)'
+    replace: '\1:/usr/local/eclipse'
+    backup: yes
+
+- copy: src=eclipse.sh dest=/etc/profile.d
+
+- copy: src=eclipse.desktop dest=/usr/local/share/applications

@@ -1,0 +1,4 @@
+- name: Install MoreUnit for Java
+  eclipse:
+    iu: org.moreunit.feature.group,org.moreunit.mock.feature.group 
+    repository: http://moreunit.sourceforge.net/update-site

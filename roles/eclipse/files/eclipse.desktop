@@ -1,5 +1,5 @@
 [Desktop Entry]
-Comment=
+Comment=Configured by fedora-ansible 
 Terminal=false
 Name=Eclipse
 Exec=/usr/local/eclipse/eclipse

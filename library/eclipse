@@ -1,0 +1,38 @@
+#!/bin/bash
+
+source ${1}
+
+function fail {
+  printf '{ "failed": true, "msg": "%s", "stderr": "%s" }\n' "$1" "$2" && exit 1
+}
+
+function install {
+  stderr=$(eclipse -nosplash -application org.eclipse.equinox.p2.director\
+ -repository http://download.eclipse.org/releases/luna,$repository\
+ -installIU $iu 2>&1 >/dev/null)
+  [ $? -ne 0 ] && fail "couldn't install $iu" "$stderr"
+}
+
+# assume state=present for now (in future, could be absent,latest)
+# assume single repository for now
+
+[ -z $repository ] && fail "repository not specified"
+
+[ -z $iu ] && fail "iu not specified"
+
+stderr=$(eclipse -nosplash -application org.eclipse.equinox.p2.director\
+ -repository http://download.eclipse.org/releases/luna,$repository\
+ -uninstallIU $iu\
+ -verifyOnly 2>&1 >/dev/null)
+verify=$?
+
+if [ $verify -eq 0 ]; then
+  echo '{"changed": false}'
+elif [ $verify -eq 13 ]; then
+  install
+  echo '{ "changed": true }'
+else
+  fail "couldn't determine state of $iu" "$stderr"
+fi
+
+install $verify
