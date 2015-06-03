@@ -3,9 +3,6 @@
   connection: local
   sudo: no
 
-  vars:
-    user: alex
-
   roles:
     - { role: virt_convert, 
         ova_path: ~/Downloads/Sandbox_HDP_2.2.4_virtualbox.ova,

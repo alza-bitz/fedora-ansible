@@ -3,9 +3,6 @@
   connection: local
   sudo: no
 
-  vars:
-    user: alex
-
   roles:
     - { role: virt_convert, 
         ova_path: ~/Downloads/Hortonworks_Sandbox_2.1.ova,

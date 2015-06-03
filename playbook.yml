@@ -3,8 +3,8 @@
   connection: local
   sudo: yes
 
-  vars: 
-    user: alex
+  vars_files:
+    - vars.yml
 
   roles:
     - bash
@@ -20,8 +20,8 @@
   connection: local
   sudo: no
 
-  vars:
-    project_dir: ~/Projects
+  vars_files:
+    - vars.yml
 
   roles:
     - drake
