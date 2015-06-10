@@ -25,5 +25,6 @@
     - vars.yml
 
   roles:
+    - hive
     - drake
     - drip
