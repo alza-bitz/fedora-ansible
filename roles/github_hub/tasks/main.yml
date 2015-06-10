@@ -1,0 +1,19 @@
+- yum: name=ruby state=present
+
+- yum: name=hub state=present
+
+- lineinfile: dest=~/.bashrc line="git=hub"
+  sudo: no
+  when: set_git_alias is defined and set_git_alias == true
+
+- command: hub config --global hub.protocol
+  register: hub_protocol
+  changed_when: false
+  when: config_hub_protocol is defined
+
+- command: hub config --global hub.protocol {{ config_hub_protocol }}
+  when: config_hub_protocol is defined and hub_protocol.stdout != config_hub_protocol
+
+- get_url: 
+    url=https://raw.githubusercontent.com/github/hub/master/etc/hub.bash_completion.sh
+    dest=/etc/bash_completion.d/

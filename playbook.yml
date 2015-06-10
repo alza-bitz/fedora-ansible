@@ -15,6 +15,7 @@
     - { role: chromium, set_default_browser: true }
     - eclipse
     - bats
+    - { role: github_hub, set_git_alias: false, config_hub_protocol: https }
 
 - hosts: localhost
   connection: local
