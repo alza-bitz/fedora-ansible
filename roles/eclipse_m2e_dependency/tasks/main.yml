@@ -1,4 +1,0 @@
-- name: Install m2e connector for the Maven Dependency Plugin
-  eclipse:
-    iu: com.ianbrandt.tools.m2e.mdp.feature.feature.group
-    repository: http://ianbrandt.github.io/m2e-maven-dependency-plugin

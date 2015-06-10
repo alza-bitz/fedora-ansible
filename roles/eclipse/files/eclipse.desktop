@@ -1,7 +1,0 @@
-[Desktop Entry]
-Comment=Configured by fedora-ansible 
-Terminal=false
-Name=Eclipse
-Exec=/usr/local/eclipse/eclipse
-Type=Application
-Icon=/usr/local/eclipse/icon.xpm

@@ -1,4 +1,0 @@
-- name: Install Maven SCM Handler for EGit
-  eclipse:
-    iu: org.sonatype.m2e.egit.feature.feature.group
-    repository: http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-egit/0.14.0/N/0.14.0.201504071521
