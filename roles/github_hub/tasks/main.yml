@@ -9,6 +9,7 @@
 - command: hub config --global hub.protocol
   register: hub_protocol
   changed_when: false
+  failed_when: hub_protocol.rc > 1
   when: config_hub_protocol is defined
 
 - command: hub config --global hub.protocol {{ config_hub_protocol }}
