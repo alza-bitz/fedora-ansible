@@ -13,7 +13,8 @@
     - docker
     - xrdp
     - { role: chromium, set_default_browser: true }
-    - eclipse
+    - { role: eclipse, 
+        eclipse_url: "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1/eclipse-java-luna-SR1-linux-gtk-x86_64.tar.gz&r=1" }
     - bats
     - { role: github_hub, set_git_alias: false, config_hub_protocol: https }
 
