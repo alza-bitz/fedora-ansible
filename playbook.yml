@@ -26,6 +26,6 @@
     - vars.yml
 
   roles:
-    - hive
+    - hive_client
     - drake
     - drip
