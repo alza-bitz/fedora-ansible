@@ -1,0 +1,14 @@
+- copy: src=google-chrome.repo dest=/etc/yum.repos.d/
+
+- yum: pkg=google-chrome-stable state=present
+
+- command: xdg-settings get default-web-browser
+  sudo: false
+  register: default_browser
+  changed_when: false
+  failed_when: false
+  when: set_default_browser is defined and set_default_browser == true
+
+- command: xdg-settings set default-web-browser google-chrome.desktop
+  sudo: false
+  when: set_default_browser is defined and set_default_browser == true and default_browser.stdout != "google-chrome.desktop"
