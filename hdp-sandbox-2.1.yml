@@ -12,4 +12,4 @@
         domain_name: "Hortonworks Sandbox 2.1",
         mount_dir: ~/Projects
       }
-    - hdp_sandbox
+    - hdp_sandbox_virt_guest
