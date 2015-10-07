@@ -12,6 +12,5 @@
     line: "{{ item.line }}"
     mode: 0600
   with_items:
-    - { line: 'Host localhost' }
-    - { line: '  StrictHostKeyChecking no' }
+    - { line: 'NoHostAuthenticationForLocalhost yes' }
 
