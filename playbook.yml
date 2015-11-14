@@ -1,6 +1,13 @@
 ---
-- hosts: localhost
-  connection: local
+- hosts: fedora-workstation 
+  sudo: yes
+  gather_facts: false
+
+  tasks:
+    - name: install python 2 dependencies for ansible modules
+      raw: dnf install -y python-yumdaemon libselinux-python
+
+- hosts: fedora-workstation
   sudo: yes
 
   vars_files:
@@ -13,13 +20,10 @@
     - docker
     - xrdp
     - { role: chromium, set_default_browser: true }
-    - { role: eclipse, 
-        eclipse_url: "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/luna/SR1/eclipse-java-luna-SR1-linux-gtk-x86_64.tar.gz&r=1" }
     - bats
     - { role: github_hub, set_git_alias: false, config_hub_protocol: https }
 
-- hosts: localhost
-  connection: local
+- hosts: fedora-workstation
   sudo: no
 
   vars_files:
