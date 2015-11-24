@@ -1,6 +1,14 @@
 ---
-- command: gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ default-size-columns 132
+# https://wiki.gnome.org/Apps/Terminal/FAQ#How_can_I_change_a_profile_setting_from_the_command_line.3F
 
-- command: gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/ default-size-rows 43
+- shell: gsettings get org.gnome.Terminal.ProfilesList default | sed "s/'//g"
+  register: default_profile_uuid
+  changed_when: false
 
-# notify print restart gnome terminals
+- command: gsettings set 
+    org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:{{ default_profile_uuid }}/ default-size-columns {{ size_columns }}
+  notify: print restart gnome-terminal
+
+- command: gsettings set 
+    org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:{{ default_profile_uuid }}/ default-size-rows {{ size_rows }}
+  notify: print restart gnome-terminal
