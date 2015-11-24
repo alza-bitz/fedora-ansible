@@ -1,0 +1,9 @@
+[Unit]
+After=suspend.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl restart fancontrol
+
+[Install]
+WantedBy=suspend.target

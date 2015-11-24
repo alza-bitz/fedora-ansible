@@ -1,0 +1,45 @@
+---
+- name: Read grub cmdline
+  shell: < /etc/default/grub sed -n 's/GRUB_CMDLINE_LINUX="\(.*\)"/\1/p' 
+  register: grub_cmdline
+  changed_when: false
+
+- name: Read proc cmdline
+  shell: printf "$(</proc/cmdline)"
+  register: proc_cmdline
+  changed_when: false
+
+- name: Read modules
+  shell: printf "$(</etc/modules-load.d/lm_sensors.conf)"
+  register: modules_load_conf_modules
+  changed_when: false
+
+- name: Ensure modules are loaded, if restart not required
+  modprobe: name={{ item }}
+  with_items: modules_load_conf_modules.stdout_lines
+  notify: restart fancontrol
+  when: grub_cmdline.stdout in proc_cmdline.stdout
+
+- name: Create or update /etc/fancontrol, if pwmconf is defined
+  copy: src={{ pwmconf }} dest=/etc/fancontrol
+  notify: restart fancontrol
+  when: pwmconf is defined
+
+- stat: path=/etc/fancontrol
+  register: etc_fancontrol
+
+- name: Enable fancontrol service, if /etc/fancontrol exists
+  service: name=fancontrol enabled=yes 
+  when: etc_fancontrol.stat.exists
+
+- name: Start fancontrol service, if /etc/fancontrol exists, pwmconf is not defined and restart not required
+  service: name=fancontrol state=started
+  when: etc_fancontrol.stat.exists and pwmconf is not defined and grub_cmdline.stdout in proc_cmdline.stdout
+
+- name: Install fancontrol-restart service
+  copy: src=fancontrol-restart.service dest=/etc/systemd/system/
+  when: etc_fancontrol.stat.exists
+
+- name: Enable fancontrol-restart service
+  service: name=fancontrol-restart enabled=yes
+  when: etc_fancontrol.stat.exists

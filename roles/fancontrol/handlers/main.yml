@@ -1,0 +1,4 @@
+---
+- name: restart fancontrol
+  service: name=fancontrol state=restarted
+  when: etc_fancontrol.stat.exists and grub_cmdline.stdout in proc_cmdline.stdout
