@@ -5,10 +5,32 @@
   register: default_profile_uuid
   changed_when: false
 
-- command: gsettings set 
-    org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:{{ default_profile_uuid }}/ default-size-columns {{ size_columns }}
-  notify: print restart gnome-terminal
+- command: gsettings get 
+    org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:{{ default_profile_uuid.stdout }}/ 
+    default-size-columns
+  register: get_size_columns
+  changed_when: false
+  when: size_columns is defined
 
 - command: gsettings set 
-    org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:{{ default_profile_uuid }}/ default-size-rows {{ size_rows }}
+    org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:{{ default_profile_uuid.stdout }}/ 
+    default-size-columns
+    {{ size_columns }}
+  changed_when: size_columns != get_size_columns.stdout | int
   notify: print restart gnome-terminal
+  when: size_columns is defined
+
+- command: gsettings get
+    org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:{{ default_profile_uuid.stdout }}/
+    default-size-rows
+  register: get_size_rows
+  changed_when: false
+  when: size_rows is defined
+
+- command: gsettings set 
+    org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:{{ default_profile_uuid.stdout }}/
+    default-size-rows
+    {{ size_rows }}
+  changed_when: size_rows != get_size_rows.stdout | int
+  notify: print restart gnome-terminal
+  when: size_rows is defined

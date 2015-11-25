@@ -9,3 +9,9 @@
     - hive_client
     - drake
     - drip
+
+- hosts: fedora-workstation
+  sudo: no
+
+  roles:
+    - { role: gnome_terminal, size_columns: 132, size_rows: 43 }

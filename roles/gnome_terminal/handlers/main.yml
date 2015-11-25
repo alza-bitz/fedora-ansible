@@ -1,0 +1,5 @@
+---
+- name: print restart gnome-terminal
+  debug:
+    msg: 'A restart of gnome-terminal instances on {{ ansible_hostname }} is now required due to
+          Gnome Terminal settings changes.'
