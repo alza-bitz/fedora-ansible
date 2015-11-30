@@ -1,0 +1,10 @@
+---
+- name: dracut
+  shell: dracut -f
+  when: '"{{ mount }}" == "/"'
+
+- name: print restart required
+  debug:
+    msg: 'A restart of {{ ansible_hostname }} is now required due to Dracut
+          initrd changes.'
+  when: '"{{ mount }}" == "/"'

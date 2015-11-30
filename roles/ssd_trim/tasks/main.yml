@@ -1,0 +1,34 @@
+---
+# get info for mount
+- shell: lsblk --list --output NAME,TYPE,MOUNTPOINT,ROTA,DISC-ZERO | grep '\s{{ mount }}\s'
+  register: result
+  changed_when: false
+
+- set_fact: 
+    name: '{{ result.stdout.split()[0] }}'
+    type: '{{ result.stdout.split()[1] }}'
+    rota: '{{ result.stdout.split()[3] }}'
+    disc_zero: '{{ result.stdout.split()[4] }}'
+
+- assert:
+    that:
+      - rota == '0'
+    msg: '{{ mount }} is not located on an ssd.'
+
+- assert:
+    that:
+      - crypt_discard is not defined or type == 'crypt'
+    msg: '{{ mount }} must be of type crypt to use crypt_discard.'
+
+# http://stackoverflow.com/questions/3850074/regex-until-but-not-including
+- lineinfile:
+    dest: /etc/crypttab
+    regexp: '^({{ name }} UUID=\S*)((?:(?!\s+allow-discards)\s+\S+)*)(\s+allow-discards)?((?:\s+\S+)*)\s*$'
+    backrefs: yes
+    line: '\1\2{{ " allow-discards" if crypt_discard else "" }}\4'
+    backup: yes
+  notify:
+    - dracut
+    - print restart required
+  when: crypt_discard is defined
+
