@@ -20,7 +20,15 @@
     - ssh
     - docker
     - xrdp
-    - { role: chromium, set_default_browser: true }
-    - chrome
     - bats
     - { role: github_hub, set_git_alias: false, config_hub_protocol: https }
+
+- hosts: fedora-workstation
+  sudo: yes
+
+  roles:
+    - { role: gnome_fonts, hinting: 'slight', antialiasing: 'rgba' }
+    - gnome_extras
+    - { role: chromium, set_default_browser: true }
+    - chrome
+

@@ -1,0 +1,6 @@
+---
+- yum: name={{ item }}
+  with_items:
+    - gnome-logs
+    - gnome-tweak-tool
+    - nautilus-image-converter

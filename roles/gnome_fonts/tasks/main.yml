@@ -1,0 +1,25 @@
+---
+
+- lineinfile:
+    dest: /usr/share/glib-2.0/schemas/org.gnome.settings-daemon.plugins.xsettings.gschema.override
+    create: yes
+    line: '[org.gnome.settings-daemon.plugins.xsettings]'
+
+- lineinfile:
+    dest: /usr/share/glib-2.0/schemas/org.gnome.settings-daemon.plugins.xsettings.gschema.override
+    regexp: '^hinting=\S+$'
+    line: "hinting='{{ hinting }}'"
+    state: '{{ "present" if hinting is defined else "absent" }}'
+  notify:
+    - compile schemas
+    - print restart gnome session
+
+- lineinfile:
+    dest: /usr/share/glib-2.0/schemas/org.gnome.settings-daemon.plugins.xsettings.gschema.override
+    regexp: '^antialiasing=\S+$'
+    line: "antialiasing='{{ antialiasing }}'"
+    state: '{{ "present" if antialiasing is defined else "absent" }}'
+  notify:
+    - compile schemas
+    - print restart gnome session
+
