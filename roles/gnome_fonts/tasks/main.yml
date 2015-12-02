@@ -29,3 +29,10 @@
     - compile glib schemas
     - print restart gnome session
 
+- lineinfile:
+    dest: /etc/X11/Xresources
+    regexp: '^Xft.lcdfilter:\s+\S+$'
+    line: 'Xft.lcdfilter: {{ lcdfilter }}'
+    state: '{{ "present" if lcdfilter is defined else "absent" }}'
+  notify:
+    - print restart gnome session

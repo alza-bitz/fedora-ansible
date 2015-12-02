@@ -27,7 +27,7 @@
   sudo: yes
 
   roles:
-    - { role: gnome_fonts, hinting: 'slight', antialiasing: 'rgba' }
+    - { role: gnome_fonts, hinting: 'slight', antialiasing: 'rgba', lcdfilter: 'lcddefault'}
     - gnome_extras
     - { role: chromium, set_default_browser: true }
     - chrome
