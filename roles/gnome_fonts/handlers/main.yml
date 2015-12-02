@@ -1,5 +1,5 @@
 ---
-- name: compile schemas
+- name: compile glib schemas
   command: glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 - name: print restart gnome session

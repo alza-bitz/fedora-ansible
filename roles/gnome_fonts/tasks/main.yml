@@ -1,4 +1,10 @@
 ---
+# Based on the following sources:
+# https://ask.fedoraproject.org/en/question/55168/how-to-improve-fonts-and-font-rendering-in-fedora-20/
+# http://worldofgnome.org/how-to-greatly-improve-font-rendering-under-fedora-20/
+# http://peter.kingofcoders.com/?p=177
+
+- yum: name=freetype-freeworld
 
 - lineinfile:
     dest: /usr/share/glib-2.0/schemas/org.gnome.settings-daemon.plugins.xsettings.gschema.override
@@ -11,7 +17,7 @@
     line: "hinting='{{ hinting }}'"
     state: '{{ "present" if hinting is defined else "absent" }}'
   notify:
-    - compile schemas
+    - compile glib schemas
     - print restart gnome session
 
 - lineinfile:
@@ -20,6 +26,6 @@
     line: "antialiasing='{{ antialiasing }}'"
     state: '{{ "present" if antialiasing is defined else "absent" }}'
   notify:
-    - compile schemas
+    - compile glib schemas
     - print restart gnome session
 
