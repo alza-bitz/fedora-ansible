@@ -1,14 +1,23 @@
 - copy: src=google-chrome.repo dest=/etc/yum.repos.d/
 
-- yum: pkg=google-chrome-stable state=present
+- yum: name=google-chrome-stable
 
-- command: xdg-settings get default-web-browser
-  sudo: false
-  register: default_browser
-  changed_when: false
-  failed_when: false
-  when: set_default_browser is defined and set_default_browser == true
+- lineinfile:
+    dest: /etc/xdg/mimeapps.list
+    create: yes
+    line: '[Default Applications]'
 
-- command: xdg-settings set default-web-browser google-chrome.desktop
-  sudo: false
-  when: set_default_browser is defined and set_default_browser == true and default_browser.stdout != "google-chrome.desktop"
+- lineinfile:
+    dest: /etc/xdg/mimeapps.list
+    create: yes
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+    state: '{{ (set_default_browser | default(false)) | ternary("present", "absent") }}'
+  with_items:
+    - { regexp: '^text/html=', line: 'text/html=google-chrome.desktop' }
+    - { regexp: '^application/xhtml\+xml=', line: 'application/xhtml+xml=google-chrome.desktop' }
+    - { regexp: '^x-scheme-handler/http=', line: 'x-scheme-handler/http=google-chrome.desktop' }
+    - { regexp: '^x-scheme-handler/https=', line: 'x-scheme-handler/https=google-chrome.desktop' }
+
+- copy: src=master_preferences dest=/opt/google/chrome/
+
