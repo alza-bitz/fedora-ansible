@@ -6,7 +6,10 @@
     - vars.yml
 
   roles:
-    - hive_client
+    - vim_rc
+    - ansible_vim
+    - bats_vim
+    - hive_vim
     - drake
     - drip
 

@@ -1,5 +1,0 @@
-- git: >
-    repo=https://github.com/autowitch/hive.vim.git
-    dest=~/.vim/bundle/hive.vim
-
-- lineinfile: dest=~/.vimrc line='au BufNewFile,BufRead *.hql set filetype=hive expandtab'

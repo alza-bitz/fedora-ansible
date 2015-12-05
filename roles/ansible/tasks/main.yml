@@ -1,5 +1,5 @@
+---
+
 - get_url: 
     url=https://raw.githubusercontent.com/dysosmus/ansible-completion/master/ansible-completion.bash
     dest=/etc/bash_completion.d/
-
-- include: vim.yml

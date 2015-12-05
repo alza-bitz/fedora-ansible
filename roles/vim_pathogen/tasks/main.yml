@@ -1,3 +1,5 @@
+---
+
 - file: path=~/.vim/autoload state=directory
 
 - file: path=~/.vim/bundle state=directory
@@ -6,4 +8,7 @@
   args:
     creates: ~/.vim/autoload/pathogen.vim
 
-- lineinfile: dest=~/.vimrc line='execute pathogen#infect()'
+- lineinfile: 
+    dest: ~/.vimrc
+    create: yes
+    line: 'execute pathogen#infect()'

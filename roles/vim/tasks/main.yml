@@ -1,12 +1,4 @@
-- yum: pkg=vim-enhanced state=present
+---
+
+- yum: name=vim-enhanced
   sudo: yes
-
-- copy: content='' dest=~/.vimrc force=no
-
-- lineinfile: dest=~/.vimrc line="{{ item }}"
-  with_items:
-    - set expandtab
-    - set shiftwidth=2
-    - set softtabstop=2
-
-- include: pathogen.yml

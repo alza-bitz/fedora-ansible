@@ -1,3 +1,5 @@
+---
+
 - git: >
     repo=https://github.com/chase/vim-ansible-yaml.git
     dest=~/.vim/bundle/vim-ansible-yaml
