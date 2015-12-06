@@ -2,11 +2,9 @@
 - hosts: fedora-workstation
   sudo: no
 
-  vars_files:
-    - vars.yml
-
   roles:
     - vim_rc
+    - { role: github_hub_user, set_git_alias: false, config_hub_protocol: https }
     - ansible_vim
     - bats_vim
     - hive_vim

@@ -1,0 +1,14 @@
+---
+
+- lineinfile: dest=~/.bashrc line="git=hub"
+  when: set_git_alias is defined and set_git_alias == true
+
+- command: hub config --global hub.protocol
+  register: hub_protocol
+  changed_when: false
+  failed_when: hub_protocol.rc > 1
+  when: config_hub_protocol is defined
+
+- command: hub config --global hub.protocol {{ config_hub_protocol }}
+  when: config_hub_protocol is defined and hub_protocol.stdout != config_hub_protocol
+

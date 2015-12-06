@@ -21,14 +21,14 @@
     - docker
     - xrdp
     - bats
-    - { role: github_hub, set_git_alias: false, config_hub_protocol: https }
+    - github_hub
 
 - hosts: fedora-workstation
   sudo: yes
 
   roles:
-    - { role: gnome_fonts, hinting: 'slight', antialiasing: 'rgba', lcdfilter: 'lcddefault'}
+    - { role: gnome_fonts, hinting: 'slight', antialiasing: 'rgba', lcdfilter: 'lcddefault' }
     - gnome_extras
-    - { role: chromium, set_default_browser: true }
+    - { role: chromium, set_default_browser: false }
     - chrome
 
