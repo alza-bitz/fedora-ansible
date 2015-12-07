@@ -3,11 +3,11 @@
   sudo: no
 
   roles:
-    - vim_rc
+    - vim_user
     - { role: github_hub_user, set_git_alias: false, config_hub_protocol: https }
-    - ansible_vim
-    - bats_vim
-    - hive_vim
+    - ansible_user
+    - bats_user
+    - hive_user
     - drake
     - drip
 
@@ -15,4 +15,4 @@
   sudo: no
 
   roles:
-    - { role: gnome_terminal, size_columns: 132, size_rows: 43 }
+    - { role: gnome_terminal_user, size_columns: 132, size_rows: 43 }

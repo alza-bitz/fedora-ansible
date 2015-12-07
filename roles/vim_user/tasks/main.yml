@@ -9,3 +9,4 @@
     - set shiftwidth=2
     - set softtabstop=2
 
+- include: pathogen.yml
