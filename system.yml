@@ -22,6 +22,7 @@
     - xrdp
     - bats
     - github_hub
+    - development_tools
 
 - hosts: fedora-workstation
   sudo: yes
