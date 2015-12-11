@@ -1,0 +1,12 @@
+---
+
+# TODO assert application var
+
+- shell: set -o pipefail; 
+    rsync --ignore-times --checksum --log-format=%f /usr/share/applications/{{ application }}.desktop ~/.config/autostart/ | 
+    grep {{ application }}
+  register: grep
+  changed_when: grep.rc == 0 
+  failed_when: grep.rc > 1
+
+    
