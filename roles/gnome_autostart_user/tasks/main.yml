@@ -1,13 +1,21 @@
 ---
 
-# TODO assert application var
+- name: Assert required vars are defined
+  assert: 
+    that: application is defined
+    msg: Unable to proceed, required var 'application' is not defined
 
-# source: http://unix.stackexchange.com/questions/88957/finding-out-whether-rsync-modified-target
-- shell: set -o pipefail; 
-    rsync --ignore-times --checksum --log-format=%f /usr/share/applications/{{ application }}.desktop ~/.config/autostart/ | 
-    grep {{ application }}
-  register: grep
-  changed_when: grep.rc == 0 
-  failed_when: grep.rc > 1
+- name: Install required packages
+  yum:
+    name: rsync
 
-    
+# https://groups.google.com/forum/#!msg/ansible-project/ac4fNU5w_RQ/bSLMywzq0cYJ
+# http://unix.stackexchange.com/questions/88957/finding-out-whether-rsync-modified-target
+# https://gist.github.com/maxim/7dd6e4d98d8c7d1f4961
+- name: Ensure application launcher file exists in ~/.config/autostart/
+  command: rsync --itemize-changes --ignore-times --checksum 
+    /usr/share/applications/{{ application }}.desktop
+    ~/.config/autostart/
+  register: rsync
+  changed_when: rsync.stdout != ''
+

@@ -15,4 +15,5 @@
   sudo: no
 
   roles:
+    - { role: gnome_autostart_user, application: empathy }
     - { role: gnome_terminal_user, size_columns: 132, size_rows: 43 }
