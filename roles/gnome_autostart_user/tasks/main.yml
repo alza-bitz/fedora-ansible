@@ -2,6 +2,7 @@
 
 # TODO assert application var
 
+# source: http://unix.stackexchange.com/questions/88957/finding-out-whether-rsync-modified-target
 - shell: set -o pipefail; 
     rsync --ignore-times --checksum --log-format=%f /usr/share/applications/{{ application }}.desktop ~/.config/autostart/ | 
     grep {{ application }}
