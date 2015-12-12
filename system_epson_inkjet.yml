@@ -1,0 +1,6 @@
+---
+- hosts: fedora-workstation
+  sudo: yes
+
+  roles:
+    - epson_inkjet_printer_escpr
