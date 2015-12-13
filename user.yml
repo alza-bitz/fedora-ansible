@@ -15,5 +15,6 @@
   sudo: no
 
   roles:
+    - { role: gnome_mutter_user, center_new_windows: true }
     - { role: gnome_autostart_user, application: empathy }
     - { role: gnome_terminal_user, size_columns: 132, size_rows: 43 }

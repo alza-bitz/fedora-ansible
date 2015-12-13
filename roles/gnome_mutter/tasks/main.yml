@@ -1,0 +1,16 @@
+---
+
+- lineinfile:
+    dest: /usr/share/glib-2.0/schemas/org.gnome.mutter.gschema.override
+    create: yes
+    line: '[org.gnome.mutter]'
+
+- lineinfile:
+    dest: /usr/share/glib-2.0/schemas/org.gnome.mutter.gschema.override
+    regexp: '^center-new-windows=\S+$'
+    line: 'center-new-windows={{ "true" if center_new_windows else "false" }}'
+    state: '{{ "present" if center_new_windows is defined else "absent" }}'
+  notify:
+    - compile glib schemas
+    - print restart gnome session
+

@@ -1,0 +1,16 @@
+---
+
+- command: gsettings get 
+    org.gnome.mutter
+    center-new-windows
+  register: get_center_new_windows
+  changed_when: false
+  when: center_new_windows is defined
+
+- command: gsettings set 
+    org.gnome.mutter
+    center-new-windows
+    {{ "true" if center_new_windows else "false" }}
+  changed_when: center_new_windows != get_center_new_windows.stdout | bool
+  when: center_new_windows is defined
+

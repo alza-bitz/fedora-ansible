@@ -1,0 +1,8 @@
+---
+- name: compile glib schemas
+  command: glib-compile-schemas /usr/share/glib-2.0/schemas/
+
+- name: print restart gnome session
+  debug:
+    msg: 'A restart of gnome session instances on {{ ansible_hostname }} is now required due to
+          Gsettings changes.'
