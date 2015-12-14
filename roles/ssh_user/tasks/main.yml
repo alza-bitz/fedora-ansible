@@ -1,0 +1,17 @@
+---
+
+# http://unix.stackexchange.com/questions/69314/automated-ssh-keygen-without-passphrase-how
+- name: Create ssh keypair with no passphrase
+  shell: < /dev/zero ssh-keygen -q -N ""
+  register: ssh_keygen
+  changed_when: ssh_keygen.rc == 0
+  failed_when: ssh_keygen.rc > 1
+
+- name: Configure no host key checking for localhost
+  lineinfile:
+    dest: ~/.ssh/config
+    create: yes
+    line: '{{ item.line }}'
+    mode: 0600
+  with_items:
+    - { line: 'NoHostAuthenticationForLocalhost yes' }

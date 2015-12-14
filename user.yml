@@ -3,6 +3,7 @@
   sudo: no
 
   roles:
+    - ssh_user
     - vim_user
     - { role: github_hub_user, set_git_alias: false, config_hub_protocol: https }
     - ansible_user
