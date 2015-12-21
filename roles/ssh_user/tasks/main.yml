@@ -15,3 +15,10 @@
     mode: 0600
   with_items:
     - { line: 'NoHostAuthenticationForLocalhost yes' }
+
+- name: Override SSH_ASKPASS if ssh_askpass defined
+  lineinfile: 
+    dest: ~/.bashrc
+    regexp: '^export\s+SSH_ASKPASS=\S*$'
+    line: 'export SSH_ASKPASS={{ ssh_askpass if ssh_askpass is defined }}'
+    state: '{{ "present" if ssh_askpass is defined else "absent" }}'
