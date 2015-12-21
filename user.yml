@@ -5,6 +5,7 @@
   roles:
     - { role: ssh_user, ssh_askpass: '' }
     - vim_user
+    - { role: git_user, config_credential_helper: gnome-keyring }
     - { role: github_hub_user, set_git_alias: false, config_hub_protocol: https }
     - ansible_user
     - bats_user

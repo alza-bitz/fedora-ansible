@@ -1,0 +1,13 @@
+---
+
+- name: Get current git config for credential.helper
+  command: git config --global credential.helper
+  register: get_credential_helper
+  changed_when: false
+  failed_when: get_credential_helper.rc > 1
+  when: config_credential_helper is defined
+
+- name: Override git config for credential.helper with config_credential_helper
+  command: git config --global credential.helper {{ config_credential_helper }}
+  when: config_credential_helper is defined and get_credential_helper.stdout != config_credential_helper
+
