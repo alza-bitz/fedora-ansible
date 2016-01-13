@@ -1,0 +1,19 @@
+---
+- hosts: fedora-workstation
+  sudo: no
+
+  vars:
+    firefox:
+      addons:
+        - url: https://addons.mozilla.org/en-US/firefox/addon/adwaita
+          prefs: 
+            - name: extensions.gnome-theme-tweak.relief-buttons
+              value: true
+        - url: https://addons.mozilla.org/en-US/firefox/addon/gnome-theme-tweak
+        - url: https://addons.mozilla.org/en-US/firefox/addon/ublock-origin
+      styles:
+        - https://userstyles.org/styles/96733/headerbar-style-for-gnome-3-16.css
+        - https://userstyles.org/styles/115022/gnome-styled-menu-list-view.css
+
+  roles:
+    - firefox_user
