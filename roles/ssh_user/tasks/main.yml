@@ -7,18 +7,27 @@
   changed_when: ssh_keygen.rc == 0
   failed_when: ssh_keygen.rc > 1
 
-- name: Configure no host key checking for localhost
+- name: Prepare ssh config for all hosts
+  lineinfile:
+    create: yes
+    dest: ~/.ssh/config
+    regexp: '\s*Host\s+\*\s*'
+    line: 'Host *'
+    insertbefore: BOF
+    mode: 0600
+  when: ssh_user.ssh_config_all_hosts is defined
+
+- name: Apply ssh config for all hosts
   lineinfile:
     dest: ~/.ssh/config
-    create: yes
-    line: '{{ item.line }}'
-    mode: 0600
-  with_items:
-    - { line: 'NoHostAuthenticationForLocalhost yes' }
+    regexp: '\s*{{ item.keyword }}(\s+\S+)*'
+    line: '    {{ item.keyword }} {{ item.arguments }}'
+    insertafter: '\s*Host\s+\*'
+  with_items: ssh_user.ssh_config_all_hosts | default([])
 
 - name: Override SSH_ASKPASS if ssh_askpass defined
   lineinfile: 
     dest: ~/.bashrc
     regexp: '^export\s+SSH_ASKPASS=\S*$'
-    line: 'export SSH_ASKPASS={{ ssh_askpass if ssh_askpass is defined }}'
-    state: '{{ "present" if ssh_askpass is defined else "absent" }}'
+    line: 'export SSH_ASKPASS={{ ssh_user.ssh_askpass | default("") }}'
+    state: '{{ "present" if ssh_user.ssh_askpass is defined else "absent" }}'

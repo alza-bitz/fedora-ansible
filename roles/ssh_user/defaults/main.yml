@@ -1,0 +1,3 @@
+---
+ssh_user:
+  ssh_config_all_hosts: []

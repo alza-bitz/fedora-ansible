@@ -2,8 +2,17 @@
 - hosts: fedora-workstation
   sudo: no
 
+  vars:
+    - ssh_user:
+        ssh_askpass: ''
+        ssh_config_all_hosts:
+          - keyword: NoHostAuthenticationForLocalhost
+            arguments: 'yes'
+          - keyword: ServerAliveInterval
+            arguments: 60
+
   roles:
-    - { role: ssh_user, ssh_askpass: '' }
+    - ssh_user
     - vim_user
     - { role: git_user, config_credential_helper: gnome-keyring }
     - { role: github_hub_user, set_git_alias: false, config_hub_protocol: https }
