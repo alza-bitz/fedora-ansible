@@ -26,8 +26,8 @@
       ui_customisations:
         - placement: nav-bar
           item: new-tab-button
-        - placement: nav-bar
-          item: other-button
+#        - placement: nav-bar
+#          item: other-button
 
   roles:
     - firefox_user
