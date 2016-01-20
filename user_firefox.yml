@@ -24,10 +24,12 @@
         - https://userstyles.org/styles/96733/headerbar-style-for-gnome-3-16.css
         - https://userstyles.org/styles/115022/gnome-styled-menu-list-view.css
       ui_customisations:
-        - placement: nav-bar
-          item: new-tab-button
-#        - placement: nav-bar
-#          item: other-button
+        add:
+          - placement: nav-bar
+            item: new-tab-button
+#        remove:
+#          - placement: TabsToolbar
+#            item: new-tab-button
 
   roles:
     - firefox_user
