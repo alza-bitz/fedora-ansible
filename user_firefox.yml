@@ -9,6 +9,9 @@
     firefox:
       addons:
         - url: https://addons.mozilla.org/en-US/firefox/addon/adwaita
+          prefs:
+            - name: general.skins.selectedSkin
+              value: Adwaita
         - url: https://addons.mozilla.org/en-US/firefox/addon/gnome-theme-tweak
           prefs: 
             - name: extensions.gnome-theme-tweak.relief-buttons
@@ -21,8 +24,8 @@
               value: false
         - url: https://addons.mozilla.org/en-US/firefox/addon/ublock-origin
       styles:
-        - https://userstyles.org/styles/96733/headerbar-style-for-gnome-3-16.css
-        - https://userstyles.org/styles/115022/gnome-styled-menu-list-view.css
+        - https://userstyles.org/styles/96733/headerbar-style-for-gnome-3-16
+        - https://userstyles.org/styles/115022/gnome-styled-menu-list-view
       ui_customisation:
         add:
           - placement: nav-bar
