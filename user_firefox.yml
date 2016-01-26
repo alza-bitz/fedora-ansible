@@ -9,9 +9,6 @@
     firefox:
       addons:
         - url: https://addons.mozilla.org/en-US/firefox/addon/adwaita
-          prefs:
-            - name: general.skins.selectedSkin
-              value: Adwaita
         - url: https://addons.mozilla.org/en-US/firefox/addon/gnome-theme-tweak
           prefs: 
             - name: extensions.gnome-theme-tweak.relief-buttons
