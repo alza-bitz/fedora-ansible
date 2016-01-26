@@ -16,10 +16,20 @@
             - name: extensions.gnome-theme-tweak.tab-max-width
               value: 4
         - url: https://addons.mozilla.org/en-US/firefox/addon/hide-tab-bar-with-one-tab
+          prefs:
+            - name: browser.tabs.animate
+              value: false
         - url: https://addons.mozilla.org/en-US/firefox/addon/ublock-origin
       styles:
-        - https://userstyles.org/styles/96733/headerbar-style-for-gnome-3-16.css
-        - https://userstyles.org/styles/115022/gnome-styled-menu-list-view.css
+        - https://userstyles.org/styles/96733/headerbar-style-for-gnome-3-16
+        - https://userstyles.org/styles/115022/gnome-styled-menu-list-view
+      ui_customisation:
+        add:
+          - placement: nav-bar
+            item: new-tab-button
+        remove:
+          - placement: TabsToolbar
+            item: new-tab-button
 
   roles:
     - firefox_user
