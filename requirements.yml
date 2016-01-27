@@ -3,3 +3,6 @@
 
 - src: https://github.com/alzadude/ansible-firefox-addon
   name: firefox_addon
+
+- src: https://github.com/alzadude/ansible-firefox
+  name: firefox
