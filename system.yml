@@ -33,4 +33,5 @@
     - { role: chromium, set_default_browser: false }
     - chrome
     - gstreamer_plugins
+    - libreoffice
 
