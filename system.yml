@@ -32,4 +32,5 @@
     - gnome_extras
     - { role: chromium, set_default_browser: false }
     - chrome
+    - gstreamer_plugins
 
