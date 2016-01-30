@@ -4,11 +4,11 @@
   sudo: no
 
   roles:
-    - { role: virt_convert, 
+    - { role: virt-convert, 
         ova_path: ~/Downloads/Hortonworks_Sandbox_2.1.ova,
         ova_dir: ~/Downloads/Hortonworks_Sandbox_2.1
       }
-    - { role: virt_mount,
+    - { role: virt-mount,
         domain_name: "Hortonworks Sandbox 2.1",
         mount_dir: ~/Projects
       }

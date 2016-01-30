@@ -1,9 +1,0 @@
----
-
-- name: Install required package dependencies
-  yum: name=lsb
-  sudo: yes
-
-- name: Download and install Epson ESC/P-R driver package
-  yum: name=https://download3.ebz.epson.net/dsc/f/03/00/04/23/02/6a3f139e5a5be1f3eebf629d792c9ada2d11f163/epson-inkjet-printer-escpr-1.6.1-1lsb3.2.x86_64.rpm
-  sudo: yes

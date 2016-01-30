@@ -3,4 +3,4 @@
   sudo: yes
 
   roles:
-    - power_management
+    - epson-inkjet-printer-escpr

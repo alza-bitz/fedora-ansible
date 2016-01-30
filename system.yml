@@ -21,17 +21,17 @@
     - docker
     - xrdp
     - bats
-    - github_hub
-    - development_tools
+    - github-hub
+    - development-tools
 
 - hosts: fedora-workstation
   sudo: yes
 
   roles:
-    - { role: gnome_fonts, hinting: 'slight', antialiasing: 'rgba', lcdfilter: 'lcddefault' }
-    - gnome_extras
+    - { role: gnome-fonts, hinting: 'slight', antialiasing: 'rgba', lcdfilter: 'lcddefault' }
+    - gnome-extras
     - { role: chromium, set_default_browser: false }
     - chrome
-    - gstreamer_plugins
+    - gstreamer-plugins
     - libreoffice
 
