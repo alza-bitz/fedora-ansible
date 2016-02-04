@@ -10,6 +10,9 @@
             arguments: 'yes'
           - keyword: ServerAliveInterval
             arguments: 60
+    - markdown_user:
+        vim_markdown_preview_browser: Firefox
+        vim_markdown_preview_use_xdg_open: 1
 
   roles:
     - ssh-user
@@ -17,6 +20,7 @@
     - { role: git-user, config_credential_helper: gnome-keyring }
     - { role: github-hub-user, set_git_alias: false, config_hub_protocol: https }
     - ansible-user
+    - markdown-user
     - bats-user
     - hive-user
     - drake

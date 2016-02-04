@@ -1,0 +1,26 @@
+---
+
+- yum: name={{ item }} state=present
+  sudo: yes
+  with_items:
+    - xdotool
+    - discount
+
+- git: >
+    repo=https://github.com/JamshedVesuna/vim-markdown-preview.git
+    dest=~/.vim/bundle/vim-markdown-preview
+
+- lineinfile:
+    dest: ~/.vimrc
+    create: yes
+    regexp: '^let\s+vim_markdown_preview_browser=\S+$'
+    line: "let vim_markdown_preview_browser='{{ markdown_user.vim_markdown_preview_browser | default() }}'"
+    state: '{{ "present" if markdown_user is defined and markdown_user.vim_markdown_preview_browser is defined else "absent" }}'
+
+- lineinfile:
+    dest: ~/.vimrc
+    create: yes
+    regexp: '^let\s+vim_markdown_preview_use_xdg_open=\S+$'
+    line: "let vim_markdown_preview_use_xdg_open={{ markdown_user.vim_markdown_preview_use_xdg_open | default() }}"
+    state: '{{ "present" if markdown_user.vim_markdown_preview_use_xdg_open is defined else "absent" }}'
+
