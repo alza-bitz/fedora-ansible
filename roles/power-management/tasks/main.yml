@@ -1,5 +1,5 @@
 - yum: name=powertop state=present
 
-- yum: name=tuned,tuned-gtk state=present
+- yum: name=tuned,tuned-utils,tuned-gtk state=present
 
 - service: name=tuned state=started enabled=true
