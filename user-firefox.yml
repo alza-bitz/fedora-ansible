@@ -16,6 +16,7 @@
             - name: extensions.gnome-theme-tweak.tab-max-width
               value: 4
         - url: https://addons.mozilla.org/en-US/firefox/addon/hide-tab-bar-with-one-tab
+        - url: https://addons.mozilla.org/en-US/firefox/addon/simple-bookmarks-menu
         - url: https://addons.mozilla.org/en-US/firefox/addon/ublock-origin
       prefs:
         - name: browser.tabs.animate
