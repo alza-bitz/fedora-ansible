@@ -21,6 +21,8 @@
       prefs:
         - name: browser.tabs.animate
           value: false
+        - name: mousewheel.default.delta_multiplier_y
+          value: 200
       styles:
         - https://userstyles.org/styles/96733/headerbar-style-for-gnome-3-16
         - https://userstyles.org/styles/115022/gnome-styled-menu-list-view
