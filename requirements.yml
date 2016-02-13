@@ -1,6 +1,4 @@
 - src: https://github.com/alzadude/fedora-ansible-eclipse
   name: eclipse
 
-- src: https://github.com/alzadude/ansible-firefox-addon
-
-- src: https://github.com/alzadude/ansible-firefox
+- src: alzadude.firefox

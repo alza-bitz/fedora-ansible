@@ -32,4 +32,4 @@
             item: new-tab-button
 
   roles:
-    - ansible-firefox
+    - alzadude.firefox
