@@ -8,6 +8,7 @@
   vars:
     firefox:
       addons:
+        - url: https://addons.mozilla.org/en-US/firefox/addon/british-english-dictionary-2
         - url: https://addons.mozilla.org/en-US/firefox/addon/gnotifier
         - url: https://addons.mozilla.org/en-US/firefox/addon/adwaita
         - url: https://addons.mozilla.org/en-US/firefox/addon/gnome-theme-tweak
