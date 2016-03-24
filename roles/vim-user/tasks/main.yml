@@ -9,4 +9,10 @@
     - set shiftwidth=2
     - set softtabstop=2
 
+- lineinfile:
+    dest: ~/.bash_profile
+    regexp: '^export\s+VISUAL=\S+$'
+    line: 'export VISUAL=vim'
+  when: set_visual
+
 - include: pathogen.yml
