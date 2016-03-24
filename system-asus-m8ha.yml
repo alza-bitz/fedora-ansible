@@ -1,0 +1,12 @@
+---
+- hosts: fedora-workstation
+  sudo: yes
+
+  vars:
+    grub_cmdline_params: 'acpi_enforce_resources=lax'
+    modules:
+      - coretemp
+      - nct6775
+
+  roles:
+    - fancontrol 
