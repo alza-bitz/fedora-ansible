@@ -10,4 +10,5 @@
     - gstreamer-plugins-ugly
     - gstreamer-plugins-bad
     - gstreamer-plugins-bad-free
+    - gstreamer1-plugins-bad-freeworld
     - gstreamer-plugins-bad-nonfree
