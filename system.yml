@@ -5,7 +5,7 @@
 
   tasks:
     - name: install python 2 dependencies for ansible modules
-      raw: dnf install -y python-yumdaemon libselinux-python
+      raw: dnf install -y python2 python2-dnf libselinux-python python-yumdaemon
 
 - hosts: fedora-workstation
   sudo: yes
