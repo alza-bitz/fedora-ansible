@@ -23,6 +23,7 @@
     - bats
     - github-hub
     - development-tools
+    - system-tools
 
 - hosts: fedora-workstation
   sudo: yes

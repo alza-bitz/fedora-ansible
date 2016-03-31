@@ -1,0 +1,9 @@
+---
+
+- name: Install the 'System Tools' package group
+  yum: name=@system-tools
+
+- name: Install selected optional packages from the 'System Tools' package group
+  yum: name={{ item }}
+  with_items:
+    - p7zip
