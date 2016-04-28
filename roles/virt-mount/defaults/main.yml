@@ -1,2 +1,0 @@
----
-mount_dir_expanded: "{{ mount_dir | expanduser }}"
