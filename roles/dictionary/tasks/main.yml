@@ -2,5 +2,6 @@
 
 # TODO assert lang is defined
 
+# Fedora uses hunspell: https://mail.gnome.org/archives/evolution-list/2013-April/msg00032.html
 - package: name=hunspell-{{ lang }}{{ '-' if country is defined }}{{ country | default() }} state=present
   sudo: yes
