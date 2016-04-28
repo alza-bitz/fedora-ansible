@@ -1,0 +1,6 @@
+---
+
+# TODO assert lang is defined
+
+- package: name=hunspell-{{ lang }}{{ '-' if country is defined }}{{ country | default() }} state=present
+  sudo: yes

@@ -24,6 +24,7 @@
     - github-hub
     - development-tools
     - system-tools
+    - { role: dictionary, lang: en, country: GB }
 
 - hosts: fedora-workstation
   sudo: yes
