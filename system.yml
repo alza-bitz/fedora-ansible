@@ -25,6 +25,7 @@
     - development-tools
     - system-tools
     - { role: dictionary, lang: en, country: GB }
+    - livestreamer
 
 - hosts: fedora-workstation
   sudo: yes
