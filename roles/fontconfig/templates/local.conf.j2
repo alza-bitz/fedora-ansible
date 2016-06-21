@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+{% if serif is defined %}
+    <alias>
+        <family>serif</family>
+        <prefer>
+            <family>{{ serif }}</family>
+        </prefer>
+    </alias>
+{% endif %}
+{% if sans_serif is defined %}
+    <alias>
+        <family>sans-serif</family>
+        <prefer>
+            <family>{{ sans_serif }}</family>
+        </prefer>
+    </alias>
+{% endif %}
+{% if monospace is defined %}
+    <alias>
+        <family>monospace</family>
+        <prefer>
+            <family>{{ sans_serif }}</family>
+        </prefer>
+    </alias>
+{% endif %}
+</fontconfig>

@@ -31,6 +31,7 @@
   sudo: yes
 
   roles:
+    - { role: fontconfig, serif: 'Liberation Serif', sans_serif: 'Liberation Sans', monospace: 'Liberation Mono' }
     - { role: gnome-fonts, hinting: 'slight', antialiasing: 'rgba', lcdfilter: 'lcddefault' }
     - gnome-extras
     - { role: chromium, set_default_browser: false }
