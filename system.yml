@@ -24,6 +24,7 @@
     - github-hub
     - development-tools
     - system-tools
+    - aws-cloud-tools
     - { role: dictionary, lang: en, country: GB }
     - livestreamer
 
