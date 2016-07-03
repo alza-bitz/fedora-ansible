@@ -35,6 +35,10 @@
         remove:
           - placement: TabsToolbar
             item: new-tab-button
+          - placement: nav-bar
+            item: pocket-button
+          - placement: nav-bar
+            item: loop-button
 
   roles:
     - alzadude.firefox
