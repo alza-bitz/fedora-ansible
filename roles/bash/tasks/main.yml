@@ -1,7 +1,12 @@
-- copy:
+---
+
+# http://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows/1292#1292
+- name: Preserve history across concurrent bash sessions
+  copy:
     content: |
-      export HISTCONTROL=erasedups
+      export HISTCONTROL=ignoredups:erasedups
       export HISTSIZE=10000
       shopt -s histappend
+      export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
     dest: /etc/profile.d/bash_history.sh
     mode: 0644
