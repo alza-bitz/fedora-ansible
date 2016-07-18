@@ -19,6 +19,7 @@
     - ansible
     - ssh
     - docker
+    - docker-compose
     - xrdp
     - bats
     - github-hub
