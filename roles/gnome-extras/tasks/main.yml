@@ -3,4 +3,6 @@
   with_items:
     - gnome-logs
     - gnome-tweak-tool
+    - dconf-editor
     - nautilus-image-converter
+    - easytag
