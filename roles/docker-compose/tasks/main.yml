@@ -1,24 +1,3 @@
 ---
 
-- command: rpm -q docker-compose
-  register: rpm_q
-  failed_when: rpm_q.rc > 1
-  changed_when: false
-
-- assert:
-    that: '{{ rpm_q.rc > 0 }}'
-    msg: 'Conflicting system package docker-compose is installed'
-
-- get_url: 
-    url: 'https://github.com/docker/compose/releases/download/1.8.0-rc2/docker-compose-{{ ansible_system }}-{{ ansible_machine }}'
-    dest: /usr/local/bin/docker-compose
-    force: yes
-
-- file:
-    path: /usr/local/bin/docker-compose
-    mode: 0755
-
-- get_url: 
-    url: 'https://raw.githubusercontent.com/docker/compose/1.8.0-rc2/contrib/completion/bash/docker-compose'
-    dest: /etc/bash_completion.d/docker-compose
-    force: yes
+- package: name=docker-compose state=present
