@@ -1,0 +1,18 @@
+---
+
+- name: Install mongotail
+  pip: name=mongotail
+
+- shell: cd {{ project_dir }}/mongo-hacker && { ! git diff --quiet HEAD ;}
+  register: mongo_hacker_local
+  changed_when: false
+  failed_when: mongo_hacker_local.rc > 1
+
+- git: >
+    repo=https://github.com/TylerBrock/mongo-hacker.git
+    dest={{ project_dir }}/mongo-hacker
+  register: mongo_hacker
+  when: mongo_hacker_local.rc != 0
+
+- command: make install chdir={{ project_dir }}/mongo-hacker
+  when: mongo_hacker.changed

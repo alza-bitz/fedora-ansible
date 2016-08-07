@@ -25,6 +25,7 @@
     - hive-user
     - drake
     - drip
+    - mongodb-tools-user
 
 - hosts: fedora-workstation
   sudo: no
