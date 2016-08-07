@@ -1,7 +1,11 @@
 ---
 
+- name: Install redhat-rpm-config (required to install mongotail using pip)
+  package: name=redhat-rpm-config
+  sudo: yes
+
 - name: Install mongotail
-  pip: name=mongotail
+  pip: name=mongotail extra_args='--user'
 
 - shell: cd {{ project_dir }}/mongo-hacker && { ! git diff --quiet HEAD ;}
   register: mongo_hacker_local
