@@ -28,6 +28,7 @@
     - aws-cloud-tools
     - { role: dictionary, lang: en, country: GB }
     - livestreamer
+    - terraform
 
 - hosts: fedora-workstation
   sudo: yes
