@@ -1,0 +1,5 @@
+---
+
+- command: dnf -y copr enable mosquito/atom
+
+- package: name=atom state=present
