@@ -16,3 +16,5 @@
   changed_when: false
 
 - copy: src=/tmp/terraform_0.7.0_linux_amd64/ dest=/usr/local/bin
+
+- file: path=/usr/local/bin/terraform mode=0755
