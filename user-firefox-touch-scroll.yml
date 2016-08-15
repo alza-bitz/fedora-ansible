@@ -1,0 +1,19 @@
+---
+
+# Sources:
+# https://bugzilla.mozilla.org/show_bug.cgi?id=711711
+# http://superuser.com/questions/1029400/how-to-enable-electrolysis-e10s-on-mozilla-firefox-beta
+
+- hosts: fedora-workstation
+  sudo: no
+
+  vars:
+    firefox:
+      prefs:
+        - name: browser.tabs.remote.autostart
+          value: true
+        - name: browser.tabs.remote.force-enable
+          value: true
+
+  roles:
+    - alzadude.firefox
