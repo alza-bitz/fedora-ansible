@@ -11,3 +11,8 @@
   command: git config --global credential.helper {{ config_credential_helper }}
   when: config_credential_helper is defined and get_credential_helper.stdout != config_credential_helper
 
+- name: Install clustergit
+  get_url:
+    url: 'https://raw.githubusercontent.com/mnagel/clustergit/master/clustergit'
+    dest: ~/bin
+    mode: 0755
