@@ -1,0 +1,18 @@
+---
+
+# Sources:
+# https://www.reddit.com/r/linux/comments/39q6xt/some_useful_firefox_tips_to_fix_choppy_scrolling/
+
+- hosts: fedora-workstation
+  sudo: no
+
+  vars:
+    firefox:
+      prefs:
+        - name: webgl.force-enabled
+          value: true
+        - name: layers.acceleration.force-enabled
+          value: true
+
+  roles:
+    - alzadude.firefox
