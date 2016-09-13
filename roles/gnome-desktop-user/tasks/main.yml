@@ -1,0 +1,17 @@
+---
+
+- shell: gsettings get 
+    org.gnome.desktop.interface
+    scaling-factor | 
+    awk '{ print $2 }' 
+  register: get_scaling_factor
+  changed_when: false
+  when: scaling_factor is defined
+
+- command: gsettings set 
+    org.gnome.desktop.interface
+    scaling-factor
+    {{ scaling_factor }}
+  changed_when: scaling_factor != get_scaling_factor.stdout | int
+  when: scaling_factor is defined
+
