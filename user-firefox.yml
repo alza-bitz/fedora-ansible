@@ -20,6 +20,7 @@
         - url: https://addons.mozilla.org/en-US/firefox/addon/hide-tab-bar-with-one-tab
         - url: https://addons.mozilla.org/en-US/firefox/addon/simple-bookmarks-menu
         - url: https://addons.mozilla.org/en-US/firefox/addon/ublock-origin
+        - url: https://addons.mozilla.org/firefox/downloads/file/495444/lastpass_password_manager-4.1.29a-an+fx.xpi
       prefs:
         - name: browser.tabs.animate
           value: false
