@@ -1,6 +1,6 @@
 ---
 - hosts: fedora-workstation
-  sudo: yes
+  become: true
 
   vars:
     grub_cmdline_params: 'acpi_enforce_resources=lax'

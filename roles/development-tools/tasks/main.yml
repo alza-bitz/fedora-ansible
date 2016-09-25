@@ -1,8 +1,8 @@
 ---
 - package: name="@development-tools"
-  sudo: yes
+  become: true
 
 - package: name={{ item }}
   with_items:
     - meld
-  sudo: yes
+  become: true

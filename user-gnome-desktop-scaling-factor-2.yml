@@ -3,7 +3,7 @@
 # http://robert.ocallahan.org/2016/04/gnome-hidpi-issues.html
 
 - hosts: fedora-workstation
-  sudo: no
+  become: false
 
   roles:
     - { role: gnome-desktop-user, scaling_factor: 2 }

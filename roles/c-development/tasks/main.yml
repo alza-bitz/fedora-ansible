@@ -1,2 +1,2 @@
 - package: name="@c-development" state=present
-  sudo: yes
+  become: true

@@ -1,7 +1,7 @@
 ---
 
 - package: name={{ item }} state=present
-  sudo: yes
+  become: true
   with_items:
     - xdotool
     - discount

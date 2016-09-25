@@ -1,5 +1,5 @@
 - package: name="@virtualisation" state=present
-  sudo: yes
+  become: true
 
 # workaround https://bugzilla.redhat.com/show_bug.cgi?id=1105274
 - file: >

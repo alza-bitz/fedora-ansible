@@ -2,8 +2,8 @@
 
 - name: Install mongodb (for Mongo shell)
   package: name=mongodb state=present
-  sudo: yes
+  become: true
 
 - name: Install mongo-tools (for mongodump, mongorestore)
   package: name=mongo-tools state=present  
-  sudo: yes
+  become: true

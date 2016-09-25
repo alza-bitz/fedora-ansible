@@ -2,7 +2,7 @@
 
 - name: Install redhat-rpm-config (required to install mongotail using pip)
   package: name=redhat-rpm-config
-  sudo: yes
+  become: true
 
 - name: Install mongotail
   pip: name=mongotail extra_args='--user'

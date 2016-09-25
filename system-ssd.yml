@@ -1,6 +1,6 @@
 ---
 - hosts: fedora-workstation
-  sudo: yes
+  become: true
 
   roles:
     - { role: ssd-trim, mount: /, crypt_discard: yes }

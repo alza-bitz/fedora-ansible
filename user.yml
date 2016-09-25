@@ -1,6 +1,6 @@
 ---
 - hosts: fedora-workstation
-  sudo: no
+  become: false
 
   vars:
     - ssh_user:

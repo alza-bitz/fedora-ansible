@@ -23,7 +23,7 @@
     regexp: '\s*{{ item.keyword }}(\s+\S+)*'
     line: '    {{ item.keyword }} {{ item.arguments }}'
     insertafter: '\s*Host\s+\*'
-  with_items: ssh_user.ssh_config_all_hosts | default([])
+  with_items: '{{ ssh_user.ssh_config_all_hosts | default([]) }}'
 
 - name: Override SSH_ASKPASS if ssh_askpass defined
   lineinfile: 

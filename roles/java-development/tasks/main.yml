@@ -1,2 +1,2 @@
 - package: name="@java-development" state=present
-  sudo: yes
+  become: true

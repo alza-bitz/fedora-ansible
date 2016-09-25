@@ -1,5 +1,5 @@
 ---
 
 - package: name=bats
-  sudo: yes
+  become: true
 

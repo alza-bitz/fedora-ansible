@@ -8,6 +8,7 @@
 - name: Install required packages
   package:
     name: rsync
+  become: true
 
 # https://groups.google.com/forum/#!msg/ansible-project/ac4fNU5w_RQ/bSLMywzq0cYJ
 # http://unix.stackexchange.com/questions/88957/finding-out-whether-rsync-modified-target

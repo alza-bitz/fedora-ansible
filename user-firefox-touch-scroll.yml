@@ -5,7 +5,7 @@
 # http://superuser.com/questions/1029400/how-to-enable-electrolysis-e10s-on-mozilla-firefox-beta
 
 - hosts: fedora-workstation
-  sudo: no
+  become: false
 
   vars:
     firefox:

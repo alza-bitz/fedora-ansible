@@ -3,7 +3,7 @@
 # Inspired by https://github.com/chpii/Headerbar and https://fedoramagazine.org/make-firefox-look-native-fedora
 
 - hosts: fedora-workstation
-  sudo: no
+  become: false
 
   vars:
     firefox:
