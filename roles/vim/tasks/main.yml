@@ -1,4 +1,4 @@
 ---
 
-- yum: name=vim-enhanced
+- package: name=vim-enhanced
   sudo: yes

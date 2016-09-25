@@ -1,5 +1,5 @@
 ---
-- yum: name={{ item }}
+- package: name={{ item }}
   with_items:
     - gnome-logs
     - gnome-tweak-tool

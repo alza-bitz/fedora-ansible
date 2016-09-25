@@ -11,7 +11,7 @@
       else '/boot/grub2/grub.cfg' }}"
 
 - name: Install lm_sensors for fancontrol support
-  yum: name=lm_sensors
+  package: name=lm_sensors
 
 - name: Read proc cmdline
   shell: printf "$(</proc/cmdline)"

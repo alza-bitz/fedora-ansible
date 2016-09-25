@@ -4,7 +4,7 @@
     url=http://negativo17.org/repos/fedora-handbrake.repo
     dest=/etc/yum.repos.d/
 
-- yum: name={{ item }}
+- package: name={{ item }}
   with_items:
     - makemkv
     - mplayer

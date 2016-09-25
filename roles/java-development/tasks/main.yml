@@ -1,2 +1,2 @@
-- yum: name="@java-development" state=present
+- package: name="@java-development" state=present
   sudo: yes

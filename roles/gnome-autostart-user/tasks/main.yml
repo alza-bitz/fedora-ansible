@@ -6,7 +6,7 @@
     msg: Unable to proceed, required var 'application' is not defined
 
 - name: Install required packages
-  yum:
+  package:
     name: rsync
 
 # https://groups.google.com/forum/#!msg/ansible-project/ac4fNU5w_RQ/bSLMywzq0cYJ

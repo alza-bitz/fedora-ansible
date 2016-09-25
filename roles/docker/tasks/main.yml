@@ -1,4 +1,4 @@
-- yum: name=@container-management state=present
+- package: name=@container-management state=present
 
 - service: name=docker state=started enabled=yes
 

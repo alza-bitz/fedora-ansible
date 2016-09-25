@@ -1,5 +1,5 @@
 ---
 
-- yum: name=bats
+- package: name=bats
   sudo: yes
 

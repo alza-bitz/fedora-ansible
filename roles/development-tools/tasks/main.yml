@@ -1,8 +1,8 @@
 ---
-- yum: name="@development-tools"
+- package: name="@development-tools"
   sudo: yes
 
-- yum: name={{ item }}
+- package: name={{ item }}
   with_items:
     - meld
   sudo: yes

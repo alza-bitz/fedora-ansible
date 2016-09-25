@@ -4,7 +4,7 @@
 # http://worldofgnome.org/how-to-greatly-improve-font-rendering-under-fedora-20/
 # http://peter.kingofcoders.com/?p=177
 
-- yum: name=freetype-freeworld
+- package: name=freetype-freeworld
 
 - lineinfile:
     dest: /usr/share/glib-2.0/schemas/org.gnome.settings-daemon.plugins.xsettings.gschema.override

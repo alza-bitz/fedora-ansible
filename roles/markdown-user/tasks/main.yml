@@ -1,6 +1,6 @@
 ---
 
-- yum: name={{ item }} state=present
+- package: name={{ item }} state=present
   sudo: yes
   with_items:
     - xdotool

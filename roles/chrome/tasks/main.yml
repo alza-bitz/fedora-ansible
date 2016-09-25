@@ -1,6 +1,6 @@
 - copy: src=google-chrome.repo dest=/etc/yum.repos.d/
 
-- yum: name=google-chrome-stable
+- package: name=google-chrome-stable
 
 - lineinfile:
     dest: /etc/xdg/mimeapps.list

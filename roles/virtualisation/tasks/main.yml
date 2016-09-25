@@ -1,4 +1,4 @@
-- yum: name="@virtualisation" state=present
+- package: name="@virtualisation" state=present
   sudo: yes
 
 # workaround https://bugzilla.redhat.com/show_bug.cgi?id=1105274

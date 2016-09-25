@@ -1,9 +1,9 @@
 ---
 
-- yum: name=ruby
+- package: name=ruby
   sudo: yes
 
-- yum: name=hub
+- package: name=hub
   sudo: yes
 
 - get_url: 

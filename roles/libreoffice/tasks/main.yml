@@ -1,2 +1,2 @@
 ---
-- yum: name=libreoffice-gtk3
+- package: name=libreoffice-gtk3
