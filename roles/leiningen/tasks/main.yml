@@ -1,7 +1,9 @@
-- file: path=~/bin state=directory
+---
 
 - get_url: >
-    dest=~/bin
+    dest=/usr/local/bin
     url=https://raw.github.com/technomancy/leiningen/stable/bin/lein
+  become: true
 
-- file: path=~/bin/lein mode=0755
+- file: path=/usr/local/bin/lein mode=0755
+  become: true

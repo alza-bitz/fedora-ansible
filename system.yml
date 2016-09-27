@@ -26,6 +26,7 @@
     - development-tools
     - system-tools
     - aws-cloud-tools
+    - leiningen
     - { role: dictionary, lang: en, country: GB }
     - livestreamer
     - terraform
