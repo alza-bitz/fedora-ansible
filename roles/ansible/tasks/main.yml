@@ -3,3 +3,7 @@
 - get_url: 
     url=https://raw.githubusercontent.com/dysosmus/ansible-completion/master/ansible-completion.bash
     dest=/etc/bash_completion.d/
+
+- get_url: 
+    url=https://raw.githubusercontent.com/dysosmus/ansible-completion/master/ansible-playbook-completion.bash
+    dest=/etc/bash_completion.d/
