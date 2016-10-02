@@ -4,7 +4,6 @@
 
   vars:
     - ssh_user:
-        ssh_askpass: ''
         ssh_config_all_hosts:
           - keyword: NoHostAuthenticationForLocalhost
             arguments: 'yes'

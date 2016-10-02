@@ -25,9 +25,3 @@
     insertafter: '\s*Host\s+\*'
   with_items: '{{ ssh_user.ssh_config_all_hosts | default([]) }}'
 
-- name: Override SSH_ASKPASS if ssh_askpass defined
-  lineinfile: 
-    dest: ~/.bashrc
-    regexp: '^export\s+SSH_ASKPASS=\S*$'
-    line: 'export SSH_ASKPASS={{ ssh_user.ssh_askpass | default("") }}'
-    state: '{{ "present" if ssh_user.ssh_askpass is defined else "absent" }}'

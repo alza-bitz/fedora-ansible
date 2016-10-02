@@ -1,3 +1,11 @@
-- package: name=openssh-server state=present
+- name: Install openssh-server package
+  package: name=openssh-server state=present
 
-- service: name=sshd state=started enabled=yes
+- name: Start sshd service, and enable service for next boot
+  service: name=sshd state=started enabled=yes
+
+- name: If gnome_ssh_askpass is true, install openssh-askpass, if false remove
+  package: 
+    name: openssh-askpass 
+    state: '{{ "present" if gnome_ssh_askpass else "absent" }}'
+  when: gnome_ssh_askpass is defined
