@@ -17,7 +17,7 @@
   roles:
     - ssh-user
     - man-user
-    - { role: vim-user, set_visual: true }
+    - vim-user
     - { role: git-user, config_credential_helper: gnome-keyring }
     - { role: github-hub-user, set_git_alias: false, config_hub_protocol: https }
     - ansible-user

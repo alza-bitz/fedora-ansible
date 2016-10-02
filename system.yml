@@ -16,6 +16,7 @@
   roles:
     - rpmfusion
     - bash
+    - { role: vim, set_visual: true }
     - ansible
     - ssh
     - docker
