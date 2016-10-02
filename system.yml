@@ -40,6 +40,7 @@
     - { role: dictionary, lang: en, country: GB }
     - livestreamer
     - terraform
+    - drive
 
 - hosts: fedora-workstation
   become: true

@@ -1,0 +1,9 @@
+---
+
+- package: name=golang state=present
+
+- file: path={{ go_path }} state=directory
+
+- template:
+    src: ansible-golang.sh.j2
+    dest: /etc/profile.d/ansible-golang.sh

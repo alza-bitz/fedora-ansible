@@ -1,6 +1,0 @@
----
-
-- name: print restart gnome session
-  debug:
-    msg: 'A restart of gnome session instances on {{ ansible_hostname }} is now required due to
-          bash profile changes.'

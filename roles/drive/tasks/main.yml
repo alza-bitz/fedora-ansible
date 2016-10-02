@@ -1,18 +1,5 @@
 ---
 
-- package: name=golang state=present
-  become: true
+- shell: GOPATH={{ go_path }} go get -u github.com/odeke-em/drive/cmd/drive
 
-- file: path=~/go state=directory
-
-- lineinfile:
-    dest: ~/.bash_profile
-    state: present
-    backrefs: true
-    regexp: '^PATH=((?!.*:\$HOME/go).*)$'
-    line: 'PATH=\1:$HOME/go'
-  notify:
-    - print restart gnome session
-
-- shell: GOPATH=~/go go get -u github.com/odeke-em/drive/cmd/drive
-  register: go_get
+- file: src={{ go_path }}/bin/drive path=/usr/local/bin/drive state=link 
