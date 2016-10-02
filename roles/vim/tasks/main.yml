@@ -3,10 +3,3 @@
 - package: name=vim-enhanced
   become: true
 
-- lineinfile:
-    dest: /etc/profile.d/ansible-vim.sh
-    create: true
-    line: 'export VISUAL=vim'
-    state: '{{ "present" if set_visual else "absent" }}'
-  when: set_visual is defined
-

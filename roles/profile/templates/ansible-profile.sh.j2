@@ -1,0 +1,18 @@
+{% if profile.env is defined %}
+{% for name, value in profile.env.items() %}
+{{ name }}={{ value }}
+export {{ name }}
+{% endfor %}
+{% endif %}
+
+{% if profile.env_path_append is defined %}
+{% for path in profile.env_path_append %}
+{# http://unix.stackexchange.com/questions/124444/how-can-i-cleanly-add-to-path #}
+case ":${PATH:={{ path }}}:" in
+    *:{{ path }}:*) ;;
+    *) PATH="${PATH}:{{ path }}" ;;
+esac
+
+{% endfor %}
+export PATH
+{% endif %}

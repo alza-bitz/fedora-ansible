@@ -10,13 +10,22 @@
 - hosts: fedora-workstation
   become: true
 
+  vars:
+    - profile:
+        env:
+          VISUAL: vim
+        env_path_append:
+          - '${HOME}/.local/bin'
+          - '${HOME}/bin'
+
   vars_files:
     - vars.yml
 
   roles:
+    - profile
     - rpmfusion
     - bash
-    - { role: vim, set_visual: true }
+    - vim
     - ansible
     - { role: ssh, gnome_ssh_askpass: false }
     - docker
