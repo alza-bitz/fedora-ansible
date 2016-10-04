@@ -41,6 +41,7 @@
     - livestreamer
     - terraform
     - drive
+    - benchmarking
 
 - hosts: fedora-workstation
   become: true
