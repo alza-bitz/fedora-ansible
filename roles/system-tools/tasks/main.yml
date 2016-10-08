@@ -7,3 +7,4 @@
   package: name={{ item }}
   with_items:
     - p7zip
+    - avahi-tools
