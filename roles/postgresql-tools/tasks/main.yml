@@ -1,0 +1,4 @@
+---
+
+- name: Install postgresql (for psql)
+  package: name=postgresql state=present

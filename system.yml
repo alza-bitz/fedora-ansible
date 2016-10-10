@@ -28,6 +28,7 @@
     - vim
     - ansible
     - { role: ssh, gnome_ssh_askpass: false }
+    - postgresql-tools
     - docker
     - docker-compose
     - xrdp
