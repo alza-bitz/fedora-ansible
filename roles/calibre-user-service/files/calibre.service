@@ -1,0 +1,23 @@
+[Unit]
+Description=Calibre content server for %u
+After=NetworkManager-wait-online.service network.target
+
+[Service]
+Type=simple
+Environment=CALIBRE_USER=%u "CALIBRE_LIBRARY=%h/Calibre Library"
+ExecStart=/bin/sh -c 'read lowerPort upperPort < /proc/sys/net/ipv4/ip_local_port_range; \
+while :; do \
+for (( port = lowerPort ; port <= upperPort ; port++ )); do \
+calibre-server \
+--max-cover=600x800 \
+--max-opds-items=30 \
+--max-opds-ungrouped-items=100 \
+--port=$port \
+--username=${CALIBRE_USER} \
+"--with-library=${CALIBRE_LIBRARY}"; \
+[[ $? -eq 70 ]] || exit $?; \
+done; \
+done'
+
+[Install]
+WantedBy=default.target

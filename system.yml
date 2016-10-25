@@ -43,6 +43,7 @@
     - terraform
     - drive
     - benchmarking
+    - calibre-user-service
 
 - hosts: fedora-workstation
   become: true

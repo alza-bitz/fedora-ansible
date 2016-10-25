@@ -1,0 +1,5 @@
+---
+
+- package: name=calibre state=present
+
+- copy: src=calibre.service dest=/etc/systemd/user
