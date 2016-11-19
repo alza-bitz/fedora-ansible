@@ -4,9 +4,17 @@
     url=http://negativo17.org/repos/fedora-handbrake.repo
     dest=/etc/yum.repos.d/
 
-- package: name={{ item }}
-  with_items:
-    - makemkv
-    - mplayer
-    - gnome-mplayer
+- ini_file:
+    dest: /etc/yum.repos.d/fedora-handbrake.repo
+    section: fedora-HandBrake
+    option: enabled
+    value: 0
+    no_extra_spaces: true
 
+- dnf: name=makemkv enablerepo=fedora-HandBrake state=present
+
+- file: src=/usr/lib64/libmmbd.so.0 dest=/usr/lib64/libaacs.so.0 state=link
+
+- file: src=/usr/lib64/libmmbd.so.0 dest=/usr/lib64/libbdplus.so.0 state=link
+
+- package: name=mpv state=present
