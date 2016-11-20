@@ -1,0 +1,67 @@
+---
+
+# Inspired by https://github.com/chpii/Headerbar and https://fedoramagazine.org/make-firefox-look-native-fedora
+
+- hosts: fedora-workstation
+  become: false
+
+  vars:
+    firefox:
+      addons:
+        - url: https://addons.mozilla.org/en-US/firefox/addon/gnotifier
+        - url: https://addons.mozilla.org/en-US/firefox/addon/adwaita
+        - url: https://addons.mozilla.org/en-US/firefox/addon/gnome-theme-tweak
+          prefs: 
+            - name: extensions.gnome-theme-tweak.relief-buttons
+              value: true
+            - name: extensions.gnome-theme-tweak.tab-max-width
+              value: 4
+        - url: https://addons.mozilla.org/en-US/firefox/addon/hide-tab-bar-with-one-tab
+        - url: https://addons.mozilla.org/en-US/firefox/addon/simple-bookmarks-menu
+      prefs:
+        - name: browser.tabs.animate
+          value: false
+      styles:
+        - https://userstyles.org/styles/96733/headerbar-style-for-gnome-3-16
+        - https://userstyles.org/styles/115022/gnome-styled-menu-list-view
+      ui_customisation:
+        add:
+          - placement: nav-bar
+            item: new-tab-button
+        remove:
+          - placement: TabsToolbar
+            item: new-tab-button
+          - placement: nav-bar
+            item: pocket-button
+          - placement: nav-bar
+            item: loop-button
+
+  roles:
+    - alzadude.firefox
+
+  # https://github.com/gnome-integration-team/firefox-gnome/issues/410
+  tasks:
+    - set_fact:
+        adwaita_addon_dir: '{{ firefox_profile }}/extensions/{451500c0-902c-11e0-91e4-0800200c9a66}'
+    - name: Fix adwaita theme addon options menu
+      copy:
+        src: '{{ adwaita_addon_dir }}/chrome-45/browser/customizableui/panelUIOverlay.css'
+        dest: '{{ adwaita_addon_dir }}/chrome-45/browser/customizableui/panelUI.css'
+        remote_src: true
+    - block:
+      - copy: src=install-rdf-target-application.xsl dest=/tmp/ansible-firefox-playbooks/
+        changed_when: false
+      - command: 
+          xsltproc --stringparam maxVersion 51.0a1 --output /tmp/ansible-firefox-playbooks/install.rdf 
+          /tmp/ansible-firefox-playbooks/install-rdf-target-application.xsl
+          {{ adwaita_addon_dir }}/install.rdf
+        changed_when: false
+      - name: Fix adwaita theme compatibility for Firefox 50
+        copy:
+          src: /tmp/ansible-firefox-playbooks/install.rdf
+          dest: '{{ adwaita_addon_dir }}/install.rdf'
+          remote_src: true
+          backup: true
+      always:
+        - file: path=/tmp/ansible-firefox-playbooks state=absent
+          changed_when: false
