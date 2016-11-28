@@ -32,3 +32,8 @@
     - print restart required
   when: crypt_discard is defined
 
+- copy:
+    content: fstrim -a -v
+    dest: /etc/cron.weekly/fstrim
+    mode: 0755
+
