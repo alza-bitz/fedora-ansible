@@ -16,6 +16,8 @@
               value: true
             - name: extensions.gnome-theme-tweak.tab-max-width
               value: 4
+            - name: extensions.gnome-theme-tweak.inactive-state
+              value: true
         - url: https://addons.mozilla.org/en-US/firefox/addon/hide-tab-bar-with-one-tab
         - url: https://addons.mozilla.org/en-US/firefox/addon/simple-bookmarks-menu
       prefs:
