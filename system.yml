@@ -45,17 +45,3 @@
     - benchmarking
     - calibre-user-service
 
-- hosts: fedora-workstation
-  become: true
-
-  roles:
-    - { role: fontconfig, serif: 'Liberation Serif', sans_serif: 'Liberation Sans', monospace: 'Liberation Mono' }
-    - { role: gnome-fonts, hinting: 'slight', antialiasing: 'rgba', lcdfilter: 'lcddefault' }
-    - gnome-extras
-    - { role: chromium, set_default_browser: false }
-    - chrome
-    - gstreamer-plugins
-    - libreoffice
-    - atom
-    - bluray
-
