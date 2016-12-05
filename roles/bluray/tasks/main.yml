@@ -1,20 +1,26 @@
 ---
 
 - get_url: 
-    url=http://negativo17.org/repos/fedora-handbrake.repo
+    url=http://negativo17.org/repos/fedora-multimedia.repo
     dest=/etc/yum.repos.d/
 
 - ini_file:
-    dest: /etc/yum.repos.d/fedora-handbrake.repo
-    section: fedora-HandBrake
+    dest: /etc/yum.repos.d/fedora-multimedia.repo
+    section: fedora-multimedia
     option: enabled
     value: 0
     no_extra_spaces: true
 
-- dnf: name=makemkv enablerepo=fedora-HandBrake state=present
+- dnf: name=makemkv enablerepo=fedora-multimedia state=present
 
-- file: src=/usr/lib64/libmmbd.so.0 dest=/usr/lib64/libaacs.so.0 state=link
+- copy:
+    content: |
+      export LIBBDPLUS_PATH=/usr/lib64/libmmbd.so.0
+      export LIBAACS_PATH=/usr/lib64/libmmbd.so.0
+    dest: /etc/profile.d/makemkv.sh
 
-- file: src=/usr/lib64/libmmbd.so.0 dest=/usr/lib64/libbdplus.so.0 state=link
+#- file: src=/usr/lib64/libmmbd.so.0 dest=/usr/lib64/libaacs.so.0 state=link
+
+#- file: src=/usr/lib64/libmmbd.so.0 dest=/usr/lib64/libbdplus.so.0 state=link
 
 - package: name=mpv state=present
