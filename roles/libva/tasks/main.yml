@@ -1,0 +1,5 @@
+---
+- package: name={{ item }}
+  with_items:
+    - libva-utils
+    - libva-intel-driver

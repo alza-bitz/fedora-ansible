@@ -19,5 +19,6 @@
     - gstreamer-plugins
     - libreoffice
     - atom
+    - libva
     - bluray
 
