@@ -5,6 +5,5 @@
 
   roles:
     - { role: gnome-mutter-user, center_new_windows: true }
-    - { role: gnome-autostart-user, application: empathy }
     - { role: gnome-terminal-user, size_columns: 132, size_rows: 43 }
 
