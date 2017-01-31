@@ -6,4 +6,4 @@
   roles:
     - { role: gnome-mutter-user, center_new_windows: true }
     - { role: gnome-terminal-user, size_columns: 132, size_rows: 43 }
-
+    - rhythmbox-user

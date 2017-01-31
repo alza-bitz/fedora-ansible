@@ -1,0 +1,11 @@
+---
+
+- file:
+    path: ~/.local/share/rhythmbox/plugins/fileorganizer
+    state: directory
+
+- unarchive:
+    src: https://github.com/lachlan-00/rb-fileorganizer/archive/master.tar.gz
+    remote_src: true
+    dest: ~/.local/share/rhythmbox/plugins/fileorganizer/
+    extra_opts: ['--strip-components=1']
