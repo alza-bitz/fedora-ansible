@@ -4,3 +4,4 @@
   with_items:
     - awscli
     - aws-shell
+    - python3-PyYAML # workaround to avoid "ImportError: No module named 'yaml'" after dnf upgrade to awscli-1.11.10-1.fc24
