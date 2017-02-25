@@ -1,0 +1,11 @@
+---
+
+- file:
+    path: ~/.gimp-2.8/themes/gimp-hidpi
+    state: directory
+
+- unarchive:
+    src: https://github.com/jedireza/gimp-hidpi/archive/master.tar.gz
+    remote_src: true
+    dest: ~/.gimp-2.8/themes/gimp-hidpi
+    extra_opts: ['--strip-components=1']

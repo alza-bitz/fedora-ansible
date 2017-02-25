@@ -1,0 +1,7 @@
+---
+
+- hosts: fedora-workstation
+  become: false
+
+  roles:
+    - gimp-hidpi
