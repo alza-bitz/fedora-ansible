@@ -1,0 +1,25 @@
+---
+- hosts: fedora-workstation
+  become: false
+
+  vars:
+    - asoundrc: |
+        # this is the configuration file to be put to ~/.asoundrc in users home directory
+        # or to /etc/asound.conf in a multiuser environment for ALSA to properly recognize
+        # all 4 subdevices of the Audio 8 DJ, otherwise it only uses the first stereo pair
+        # forget the information found in the web about the need to use the jack server
+        #
+        # pulseaudio has to be disabled before starting Mixxx
+        #
+        #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+        # Native Instruments :: Audio 8-DJ ALSA configuration using it as second device
+        # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        #
+        pcm.my_Audio_8-DJ_(Ch-A) { type plug; slave.pcm "hw:1,0,0"; }
+        pcm.my_Audio_8-DJ_(Ch-B) { type plug; slave.pcm "hw:1,0,1"; }
+        pcm.my_Audio_8-DJ_(Ch-C) { type plug; slave.pcm "hw:1,0,2"; }
+        pcm.my_Audio_8-DJ_(Ch-D) { type plug; slave.pcm "hw:1,0,3"; }
+        # ( ͡° ͜ʖ ͡° )
+
+  tasks:
+    - copy: content={{ asoundrc }} dest=~/.asoundrc

@@ -1,0 +1,25 @@
+---
+- hosts: fedora-workstation
+  become: false
+
+  vars:
+    autospawn: 'no'
+
+  tasks:
+    - copy:
+        src: /etc/pulse/client.conf
+        dest: ~/.config/pulse/
+        remote_src: true
+        force: false
+    - lineinfile:
+        dest: ~/.config/pulse/client.conf
+        regexp: '^autospawn\s*=\s*\S+$'
+        line: "autospawn = {{ autospawn }}"
+        state: '{{ "present" if autospawn is defined else "absent" }}'
+      notify:
+        - print restart required
+
+  handlers:
+    - name: print restart required
+      debug:
+        msg: 'A restart of {{ ansible_hostname }} is now required due to Pulseaudio changes.'
