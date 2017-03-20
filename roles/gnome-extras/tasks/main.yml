@@ -8,3 +8,4 @@
     - easytag
     - gitg
     - transmission-gtk
+    - p7zip-plugins # to get 7z encryption in file roller
