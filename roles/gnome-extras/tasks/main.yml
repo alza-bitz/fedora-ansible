@@ -9,3 +9,4 @@
     - gitg
     - transmission-gtk
     - p7zip-plugins # to get 7z encryption in file roller
+    - gnome-shell-extension-pomodoro
