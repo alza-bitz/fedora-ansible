@@ -1,0 +1,17 @@
+---
+
+- get_url: 
+    url: 'https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh'
+    dest: /tmp
+  delegate_to: localhost
+
+- file:
+    path: /tmp/install.sh
+    mode: +x
+  delegate_to: localhost
+
+- synchronize: 
+    src: /tmp/install.sh
+    dest: /tmp
+
+- command: /tmp/install.sh
